@@ -1,0 +1,5 @@
+helit_my_class:
+    resource: "@HelitMyClassBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
