@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0f5bf28fac35560dbdb2e597d32df056",
+    "hash": "4ccccb1652bae3dc5e8ce1b3b9e7ebda",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -909,6 +909,42 @@
             "time": "2012-12-21 11:40:51"
         },
         {
+            "name": "semantic/ui",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Semantic-Org/Semantic-UI.git",
+                "reference": "b4d60ed52095ab923b81900337da7562470c20d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Semantic-Org/Semantic-UI/zipball/b4d60ed52095ab923b81900337da7562470c20d2",
+                "reference": "b4d60ed52095ab923b81900337da7562470c20d2",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jack Lukic",
+                    "email": "jacklukic@gmail.com",
+                    "role": "Creator"
+                }
+            ],
+            "description": "Semantic empowers designers and developers by creating a shared vocabulary for UI.",
+            "homepage": "http://www.semantic-ui.com",
+            "keywords": [
+                "css",
+                "framework",
+                "semantic",
+                "ui"
+            ],
+            "time": "2014-07-31 16:11:24"
+        },
+        {
             "name": "sensio/distribution-bundle",
             "version": "v3.0.4",
             "target-dir": "Sensio/Bundle/DistributionBundle",
@@ -1621,12 +1657,12 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "semantic/ui": 20
+    },
     "prefer-stable": false,
     "platform": {
-        "php": ">=5.3.3"
+        "php": ">=5.5.0"
     },
     "platform-dev": [
 
