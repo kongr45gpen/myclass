@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class LandingController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="helit_my_class_landing_index")
      * @Template()
      */
     public function indexAction()
