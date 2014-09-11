@@ -35,11 +35,16 @@ class Separation
      */
     private $fullName;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Orientation", mappedBy="separations")
+     */
+    private $orientations;
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -62,7 +67,7 @@ class Separation
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -85,10 +90,50 @@ class Separation
     /**
      * Get fullName
      *
-     * @return string 
+     * @return string
      */
     public function getFullName()
     {
         return $this->fullName;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->orientations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add orientations
+     *
+     * @param \Helit\Bundle\MyClassBundle\Entity\Orientation $orientations
+     * @return Separation
+     */
+    public function addOrientation(\Helit\Bundle\MyClassBundle\Entity\Orientation $orientations)
+    {
+        $this->orientations[] = $orientations;
+
+        return $this;
+    }
+
+    /**
+     * Remove orientations
+     *
+     * @param \Helit\Bundle\MyClassBundle\Entity\Orientation $orientations
+     */
+    public function removeOrientation(\Helit\Bundle\MyClassBundle\Entity\Orientation $orientations)
+    {
+        $this->orientations->removeElement($orientations);
+    }
+
+    /**
+     * Get orientations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOrientations()
+    {
+        return $this->orientations;
     }
 }

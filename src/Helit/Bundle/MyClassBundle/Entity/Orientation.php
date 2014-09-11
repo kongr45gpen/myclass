@@ -3,6 +3,7 @@
 namespace Helit\Bundle\MyClassBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Orientation
@@ -35,11 +36,29 @@ class Orientation
      */
     private $fullName;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Separation", inversedBy="orientations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $separation;
+
+    /**
+     * @ORM\OneToMany(targetEntity="SchoolClass", mappedBy="orientation")
+     */
+    private $classes;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->classes = new ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -62,7 +81,7 @@ class Orientation
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -85,10 +104,66 @@ class Orientation
     /**
      * Get fullName
      *
-     * @return string 
+     * @return string
      */
     public function getFullName()
     {
         return $this->fullName;
+    }
+
+    /**
+     * Set separation
+     *
+     * @param \Helit\Bundle\MyClassBundle\Entity\Separation $separation
+     * @return Orientation
+     */
+    public function setSeparation(\Helit\Bundle\MyClassBundle\Entity\Separation $separation = null)
+    {
+        $this->separation = $separation;
+
+        return $this;
+    }
+
+    /**
+     * Get separation
+     *
+     * @return \Helit\Bundle\MyClassBundle\Entity\Separation
+     */
+    public function getSeparation()
+    {
+        return $this->separation;
+    }
+
+    /**
+     * Add classes
+     *
+     * @param \Helit\Bundle\MyClassBundle\Entity\SchoolClass $classes
+     * @return Orientation
+     */
+    public function addClass(\Helit\Bundle\MyClassBundle\Entity\SchoolClass $classes)
+    {
+        $this->classes[] = $classes;
+
+        return $this;
+    }
+
+    /**
+     * Remove classes
+     *
+     * @param \Helit\Bundle\MyClassBundle\Entity\SchoolClass $classes
+     */
+    public function removeClass(\Helit\Bundle\MyClassBundle\Entity\SchoolClass $classes)
+    {
+        $this->classes->removeElement($classes);
+    }
+
+    /**
+     * Get classes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getClasses()
+    {
+        return $this->classes;
     }
 }

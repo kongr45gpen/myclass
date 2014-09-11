@@ -60,11 +60,22 @@ class ScheduleItem
      */
     private $room;
 
+    /**
+    * @ORM\ManyToOne(targetEntity="SchoolClass", inversedBy="schedule")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $class;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Teacher", inversedBy="schedule")
+    */
+    private $teacher;
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -87,7 +98,7 @@ class ScheduleItem
     /**
      * Get day
      *
-     * @return integer 
+     * @return integer
      */
     public function getDay()
     {
@@ -110,7 +121,7 @@ class ScheduleItem
     /**
      * Get hour
      *
-     * @return integer 
+     * @return integer
      */
     public function getHour()
     {
@@ -133,7 +144,7 @@ class ScheduleItem
     /**
      * Get status
      *
-     * @return integer 
+     * @return integer
      */
     public function getStatus()
     {
@@ -156,10 +167,56 @@ class ScheduleItem
     /**
      * Get room
      *
-     * @return integer 
+     * @return integer
      */
     public function getRoom()
     {
         return $this->room;
+    }
+
+    /**
+     * Set class
+     *
+     * @param \Helit\Bundle\MyClassBundle\Entity\SchoolClass $class
+     * @return ScheduleItem
+     */
+    public function setClass(\Helit\Bundle\MyClassBundle\Entity\SchoolClass $class = null)
+    {
+        $this->class = $class;
+
+        return $this;
+    }
+
+    /**
+     * Get class
+     *
+     * @return \Helit\Bundle\MyClassBundle\Entity\SchoolClass
+     */
+    public function getClass()
+    {
+        return $this->class;
+    }
+
+    /**
+     * Set teacher
+     *
+     * @param \Helit\Bundle\MyClassBundle\Entity\Teacher $teacher
+     * @return ScheduleItem
+     */
+    public function setTeacher(\Helit\Bundle\MyClassBundle\Entity\Teacher $teacher = null)
+    {
+        $this->teacher = $teacher;
+
+        return $this;
+    }
+
+    /**
+     * Get teacher
+     *
+     * @return \Helit\Bundle\MyClassBundle\Entity\Teacher
+     */
+    public function getTeacher()
+    {
+        return $this->teacher;
     }
 }

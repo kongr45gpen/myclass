@@ -28,11 +28,16 @@ class Teacher
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="ScheduleItem", mappedBy="teacher")
+     */
+    private $schedule;
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -55,10 +60,50 @@ class Teacher
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
         return $this->name;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->schedule = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add schedule
+     *
+     * @param \Helit\Bundle\MyClassBundle\Entity\ScheduleItem $schedule
+     * @return Teacher
+     */
+    public function addSchedule(\Helit\Bundle\MyClassBundle\Entity\ScheduleItem $schedule)
+    {
+        $this->schedule[] = $schedule;
+
+        return $this;
+    }
+
+    /**
+     * Remove schedule
+     *
+     * @param \Helit\Bundle\MyClassBundle\Entity\ScheduleItem $schedule
+     */
+    public function removeSchedule(\Helit\Bundle\MyClassBundle\Entity\ScheduleItem $schedule)
+    {
+        $this->schedule->removeElement($schedule);
+    }
+
+    /**
+     * Get schedule
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSchedule()
+    {
+        return $this->schedule;
     }
 }
