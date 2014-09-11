@@ -12,3 +12,18 @@
 /vendor/
 /bin/
 /composer.phar
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+*~
+node_modules
+.sass-cache
+composer.phar
