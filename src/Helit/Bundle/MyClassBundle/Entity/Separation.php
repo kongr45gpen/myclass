@@ -36,7 +36,7 @@ class Separation
     private $fullName;
 
     /**
-     * @ORM\OneToMany(targetEntity="Orientation", mappedBy="separations")
+     * @ORM\OneToMany(targetEntity="Orientation", mappedBy="separation")
      */
     private $orientations;
 
@@ -130,7 +130,7 @@ class Separation
     /**
      * Get orientations
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getOrientations()
     {
