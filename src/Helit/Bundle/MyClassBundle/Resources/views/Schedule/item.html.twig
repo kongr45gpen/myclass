@@ -10,7 +10,7 @@
         </div>
 
         <div class="schedule-info">
-            <div class="pull-left small schedule ui label"><i class="right icon"></i> {{ item.class.orientation.separation.name }}</div>
+            <div class="pull-left small schedule ui {{ item.class.orientation.separation.colour }} label"><i class="right icon"></i> {{ item.class.orientation.separation.name }}</div>
             {% if item.room %}
                 <div class="pull-right small schedule ui label"><i class="column layout icon"></i> {{ item.room }}</div>
             {% endif %}
