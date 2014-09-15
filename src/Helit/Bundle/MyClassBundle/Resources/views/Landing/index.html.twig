@@ -1,5 +1,29 @@
 {% extends "HelitMyClassBundle::layout.html.twig" %}
 
 {% block content %}
-    Welcome to MyClass!
+    <div class="ui connected items">
+        <div class="row">
+            {% for class in classes %}
+                <div class="item">
+                    <div class="content">
+                        <div class="name">{{ class.name }}</div>
+                        <p class="description">
+                            <div class="fluid ui vertical right labeled icon buttons">
+                                {% for separation in separations if separation != class.orientation.separation %}
+                                    {% for orientation in separation.orientations %}
+                                        {% for extraclass in orientation.classes %}
+                                            <a class="ui button" href="{{ path('schedule', {classes: [class.id, extraclass.id]}) }}">
+                                                <i class="right arrow icon"></i>
+                                                {{ extraclass.name }}
+                                            </a>
+                                        {% endfor %}
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
