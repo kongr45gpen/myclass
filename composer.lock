@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4ccccb1652bae3dc5e8ce1b3b9e7ebda",
+    "hash": "795d85da73425819bec9a62d9e9ad41f",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -914,12 +914,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Semantic-Org/Semantic-UI.git",
-                "reference": "0dd46c62316ba36eda315a490fa77f5684127f54"
+                "reference": "c5f79760ae5d499067f6f0fe3ca7797378c441f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Semantic-Org/Semantic-UI/zipball/0dd46c62316ba36eda315a490fa77f5684127f54",
-                "reference": "0dd46c62316ba36eda315a490fa77f5684127f54",
+                "url": "https://api.github.com/repos/Semantic-Org/Semantic-UI/zipball/c5f79760ae5d499067f6f0fe3ca7797378c441f2",
+                "reference": "c5f79760ae5d499067f6f0fe3ca7797378c441f2",
                 "shasum": ""
             },
             "type": "library",
@@ -942,7 +942,7 @@
                 "semantic",
                 "ui"
             ],
-            "time": "2014-09-10 02:25:06"
+            "time": "2014-09-14 15:56:17"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -1216,22 +1216,22 @@
         },
         {
             "name": "symfony/icu",
-            "version": "v1.2.2",
+            "version": "v1.1.2",
             "target-dir": "Symfony/Component/Icu",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Icu.git",
-                "reference": "d4d85d6055b87f394d941b45ddd3a9173e1e3d2a"
+                "reference": "229730a14ccac63bb3c5d9f0494fcd27140c0dd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Icu/zipball/d4d85d6055b87f394d941b45ddd3a9173e1e3d2a",
-                "reference": "d4d85d6055b87f394d941b45ddd3a9173e1e3d2a",
+                "url": "https://api.github.com/repos/symfony/Icu/zipball/229730a14ccac63bb3c5d9f0494fcd27140c0dd3",
+                "reference": "229730a14ccac63bb3c5d9f0494fcd27140c0dd3",
                 "shasum": ""
             },
             "require": {
                 "ext-intl": "*",
-                "lib-icu": ">=4.4",
+                "lib-icu": ">=3.8",
                 "php": ">=5.3.3",
                 "symfony/intl": "~2.3"
             },
@@ -1261,7 +1261,7 @@
                 "icu",
                 "intl"
             ],
-            "time": "2014-07-25 09:58:17"
+            "time": "2014-07-25 10:00:11"
         },
         {
             "name": "symfony/monolog-bundle",
