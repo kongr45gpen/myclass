@@ -25,6 +25,8 @@ class HelitMyClassExtension extends \Twig_Extension
             'ε' => 'ε',
             'Ή' => 'Η',
             'ή' => 'η',
+            'Ί' => 'Ι',
+            'ί' => 'ι',
             'Ό' => 'Ο',
             'ό' => 'ο',
             'Ύ' => 'Υ',
