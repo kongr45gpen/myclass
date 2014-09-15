@@ -1,6 +1,7 @@
 {
     "name": "kongr45gpen/myclass",
     "type": "project",
+    "description": "Simple school management for students",
     "autoload": {
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
