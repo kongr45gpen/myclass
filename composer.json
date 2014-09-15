@@ -1,5 +1,5 @@
 {
-    "name": "myclass",
+    "name": "kongr45gpen/myclass",
     "type": "project",
     "autoload": {
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
