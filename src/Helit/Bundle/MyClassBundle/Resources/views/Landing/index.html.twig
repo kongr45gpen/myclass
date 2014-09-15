@@ -1,7 +1,14 @@
 {% extends "HelitMyClassBundle::layout.html.twig" %}
 
 {% block content %}
-    <div class="ui connected items">
+    <h2 class="ui header">
+        <i class="calendar icon"></i>
+        <div class="content">
+            Schedule
+        </div>
+    </h2>
+    <div class="ui fitted divider"></div>
+    <div class="ui seven connected items">
         <div class="row">
             {% for class in classes %}
                 <div class="item">
