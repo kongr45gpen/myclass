@@ -61,6 +61,9 @@ assetic:
         semantic_font_ttf:
           inputs:
               - '%kernel.root_dir%/../vendor/semantic/ui/build/packaged/fonts/icons.ttf'
+        nav_background:
+          inputs:
+              - '@HelitMyClassBundle/Resources/public/images/navbg.jpg'
 
 # Doctrine Configuration
 doctrine:

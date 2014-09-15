@@ -2,6 +2,7 @@
 /web/assetic/
 /web/css/
 /web/fonts/
+/web/images/
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
