@@ -6,7 +6,7 @@
         <div class="sub header">
             for
             {% for class in classes -%}
-                {{- class.name -}}
+                <strong>{{ class.name }}</strong> ({{ class.orientation.name }})
                 {%- if not loop.last -%}
                     ,
                 {% endif -%}
