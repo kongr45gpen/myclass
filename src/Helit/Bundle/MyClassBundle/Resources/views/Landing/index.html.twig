@@ -12,7 +12,7 @@
                                 {% for separation in separations if separation != class.orientation.separation %}
                                     {% for orientation in separation.orientations %}
                                         {% for extraclass in orientation.classes %}
-                                            <a class="ui button" href="{{ path('schedule', {classes: [class.id, extraclass.id]}) }}">
+                                            <a class="ui {{ orientation.colour }} button" href="{{ path('schedule', {classes: [class.id, extraclass.id]}) }}">
                                                 <i class="right arrow icon"></i>
                                                 {{ extraclass.name }}
                                             </a>

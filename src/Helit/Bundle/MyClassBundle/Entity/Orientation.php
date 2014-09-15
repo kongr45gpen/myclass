@@ -37,6 +37,20 @@ class Orientation
     private $fullName;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="colour", type="string", length=15, nullable=true)
+     */
+    private $colour;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="icon", type="string", length=30, nullable=true)
+     */
+    private $icon;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Separation", inversedBy="orientations")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -165,5 +179,51 @@ class Orientation
     public function getClasses()
     {
         return $this->classes;
+    }
+
+    /**
+     * Set colour
+     *
+     * @param string $colour
+     * @return Orientation
+     */
+    public function setColour($colour)
+    {
+        $this->colour = $colour;
+
+        return $this;
+    }
+
+    /**
+     * Get colour
+     *
+     * @return string
+     */
+    public function getColour()
+    {
+        return $this->colour;
+    }
+
+    /**
+     * Set icon
+     *
+     * @param string $icon
+     * @return Orientation
+     */
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    /**
+     * Get icon
+     *
+     * @return string
+     */
+    public function getIcon()
+    {
+        return $this->icon;
     }
 }
