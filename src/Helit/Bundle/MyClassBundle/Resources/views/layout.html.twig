@@ -1,6 +1,6 @@
 {% extends '::base.html.twig' %}
 
-{% block title 'What?' %}
+{% block title 'MyClass' %}
 
 {% block stylesheets %}
 	{% stylesheets '@semantic_font_woff' output='fonts/icons.woff'%} {% endstylesheets %}
@@ -13,6 +13,7 @@
 	{% stylesheets
         '@semantic_css'
         '@HelitMyClassBundle/Resources/public/css/semantic.css'
+		'@HelitMyClassBundle/Resources/public/css/style.css'
      %}
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
@@ -42,42 +43,44 @@
 
     <div style="clear: both"></div>
 
-    <div class="ui page grid relaxed feature segment">
-    	<div class="ui column">
-        	{% for flashMessage in app.session.flashbag.get('success') %}
-        	    <div class="ui green message">
-        	      <div class="header">
-        		Success
-        	      </div>
-        	      <p>
-        		{{ flashMessage }}
-        	      </p>
-        	  </div>
-        	{% endfor %}
-        	{% for flashMessage in app.session.flashbag.get('error') %}
-        	    <div class="ui red message">
-        	      <div class="header">
-        		Error
-        	      </div>
-        	      <p>
-        		{{ flashMessage }}
-        	      </p>
-        	  </div>
-        	{% endfor %}
-        	    {% for flashMessage in app.session.flashbag.get('notice') %}
-        	    <div class="ui message">
-        	      <div class="header">
-        		Notice
-        	      </div>
-        	      <p>
-        		{{ flashMessage }}
-        	      </p>
-        	  </div>
-        	{% endfor %}
-    	</div>
-	</div>
+	{% if app.session.flashbag.peekAll is not empty %}
+	    <div class="ui page grid relaxed feature segment">
+	    	<div class="ui column">
+	        	{% for flashMessage in app.session.flashbag.get('success') %}
+	        	    <div class="ui green message">
+	        	      <div class="header">
+	        		Success
+	        	      </div>
+	        	      <p>
+	        		{{ flashMessage }}
+	        	      </p>
+	        	  </div>
+	        	{% endfor %}
+	        	{% for flashMessage in app.session.flashbag.get('error') %}
+	        	    <div class="ui red message">
+	        	      <div class="header">
+	        		Error
+	        	      </div>
+	        	      <p>
+	        		{{ flashMessage }}
+	        	      </p>
+	        	  </div>
+	        	{% endfor %}
+	        	    {% for flashMessage in app.session.flashbag.get('notice') %}
+	        	    <div class="ui message">
+	        	      <div class="header">
+	        		Notice
+	        	      </div>
+	        	      <p>
+	        		{{ flashMessage }}
+	        	      </p>
+	        	  </div>
+	        	{% endfor %}
+	    	</div>
+		</div>
+	{% endif %}
 
-    <div class="ui page grid relaxed feature segment">
+    <div class="ui page grid feature segment">
     	<div class="ui column">
             {% block content %}{% endblock %}
         </div>

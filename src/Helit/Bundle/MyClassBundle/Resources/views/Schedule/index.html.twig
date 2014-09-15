@@ -1,0 +1,65 @@
+{% extends 'HelitMyClassBundle::layout.html.twig' %}
+
+{% block content -%}
+    <h1 class="ui header">
+        Schedule
+        <div class="sub header">
+            for
+            {% for class in classes -%}
+                {{- class.name -}}
+                {%- if not loop.last -%}
+                    ,
+                {% endif -%}
+            {%- endfor -%}
+        </div>
+    </h1>
+
+
+    <table class="desktop-item ui large padded celled table segment">
+        <thead>
+            <tr>
+                <th class="schedule-hour">Hour</th>
+                <th class="schedule-day">Monday</th>
+                <th class="schedule-day">Tuesday</th>
+                <th class="schedule-day">Wednesday</th>
+                <th class="schedule-day">Thursday</th>
+                <th class="schedule-day">Friday</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hour in 1..7 %}
+            <tr class="schedule-row">
+                {% spaceless %}
+                    <td>{{ hour }}</td>
+                    {% for day in range(constant('\\Helit\\Bundle\\MyClassBundle\\Entity\\ScheduleItem::DAY_MONDAY'), constant('\\Helit\\Bundle\\MyClassBundle\\Entity\\ScheduleItem::DAY_FRIDAY')) %}
+                        {% include('HelitMyClassBundle::Schedule/item.html.twig') %}
+                    {% endfor %}
+                {% endspaceless %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# Reverse table for mobile #}
+    <table class="mobile-item ui large padded celled table segment">
+        <thead>
+            <tr>
+                <th>Day</th>
+                {% for hour in 1..7 %}
+                    <th>{{ hour }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for day in range(constant('\\Helit\\Bundle\\MyClassBundle\\Entity\\ScheduleItem::DAY_MONDAY'), constant('\\Helit\\Bundle\\MyClassBundle\\Entity\\ScheduleItem::DAY_FRIDAY')) %}
+            <tr>
+                {% spaceless %}
+                    <td>{{ date('sunday + ' ~ day ~ ' days')|date("l") }}</td>
+                    {% for hour in 1..7 %}
+                        {{ include('HelitMyClassBundle::Schedule/item.html.twig') }}
+                    {% endfor %}
+                {% endspaceless %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% endblock %}

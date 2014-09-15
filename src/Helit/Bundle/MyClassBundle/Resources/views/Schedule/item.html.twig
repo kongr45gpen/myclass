@@ -1,0 +1,19 @@
+{% set item = (schedule[day][hour] is defined) ? schedule[day][hour] : null %}
+{% if item is null or item.status is constant('STATUS_DISABLED', item) %}
+    <td class="schedule disabled">ΚΕΝΟ</td>
+{% elseif item.status is constant('STATUS_UNKNOWN',item) %}
+    <td class="schedule negative">???</td>
+{% else %}
+    <td class="schedule positive">
+        <div class="schedule-teacher">
+            {{- item.teacher ? item.teacher.name|upper : '' -}}
+        </div>
+
+        <div class="schedule-info">
+            <div class="pull-left small schedule ui label"><i class="right icon"></i> {{ item.class.orientation.separation.name }}</div>
+            {% if item.room %}
+                <div class="pull-right small schedule ui label"><i class="column layout icon"></i> {{ item.room }}</div>
+            {% endif %}
+        </div>
+    </td>
+{% endif %}

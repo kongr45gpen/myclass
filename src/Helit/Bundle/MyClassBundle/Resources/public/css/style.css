@@ -1,0 +1,44 @@
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+td.schedule {
+    text-align: center;
+}
+
+.schedule-teacher {
+    margin-bottom: 1em;
+}
+
+.schedule-info .float-fill {
+    display: inline-block;
+    width: 3.5rem;
+}
+
+.schedule-hour {
+    width: 5%;
+}
+
+.schedule-day {
+    width: 19%;
+}
+
+.schedule-row {
+    height: 92px;
+}
+
+@media (max-width: 768px) {
+    .desktop-item {
+        display: none !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-item {
+        display: none !important;
+    }
+}
