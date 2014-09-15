@@ -1,0 +1,5 @@
+services:
+    helit.myclass.twig.myclass_extension:
+        class: Helit\Bundle\MyClassBundle\Twig\HelitMyClassExtension
+        tags:
+            - { name: twig.extension }

@@ -6,13 +6,13 @@
 {% else %}
     <td class="schedule positive">
         <div class="schedule-teacher">
-            {{- item.teacher ? item.teacher.name|upper : '' -}}
+            {{- item.teacher ? item.teacher.name|removeAccents|upper : '' -}}
         </div>
 
         <div class="schedule-info">
             <div class="pull-left small schedule ui {{ item.class.orientation.separation.colour }} label">
                 <i class="{{ item.class.orientation.icon ?: 'right' }} icon"></i>
-                {{ item.class.orientation.separation.name }}
+                {{ item.class.orientation.separation.name|removeAccents|upper }}
             </div>
             {% if item.room %}
                 <div class="pull-right small schedule ui label"><i class="column layout icon"></i> {{ item.room }}</div>
