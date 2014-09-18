@@ -31,6 +31,10 @@ td.schedule {
     height: 92px;
 }
 
+.ui.inverted.tiered.menu .sub.menu .header.item {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
 @media (max-width: 768px) {
     .desktop-item {
         display: none !important;

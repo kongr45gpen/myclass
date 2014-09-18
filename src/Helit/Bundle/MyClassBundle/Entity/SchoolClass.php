@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * SchoolClass
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Helit\Bundle\MyClassBundle\Entity\SchoolClassRepository")
  */
 class SchoolClass
 {

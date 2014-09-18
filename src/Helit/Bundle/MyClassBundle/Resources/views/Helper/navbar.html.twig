@@ -1,0 +1,36 @@
+<div class="column">
+    <div class="inverted secondary tiered ui menu">
+        <div class="inverted secondary pointing ui menu">
+            <div class="header item">My Class</div>
+            <div class="right menu">
+                <a href="{{ path('schedule') }}" class="item">
+                    <i class="empty calendar icon"></i> Schedule
+                </a>
+                <a href="{{ path('helit_my_class_landing_index') }}" class="item">
+                    <i class="home icon"></i> Home
+                </a>
+            </div>
+        </div>
+        <div class="ui secondary pointing sub menu">
+            {% for separation in separations %}
+                <div class="header item">{{ separation.name }}</div>
+                {% for orientation in separation.orientations %}
+                    {% for class in orientation.classes %}
+                        {% set cssclass = orientation.colour %}
+                        {% if student_info.selected(class, separation) %}
+                            {% set cssclass = cssclass ~ ' active' %}
+                        {% endif %}
+                        {% set url = path(request.attributes.get('_route'),
+                            request.attributes.get('_route_params', [])|merge
+                            ({classes: class.id}))
+                        %}
+                        <a class="{{ cssclass }} item" href="{{ url }}">
+                            {{ class.name }}
+                            {# {{ app.request.cookies.get('toast', 15).1 }} #}
+                        </a>
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

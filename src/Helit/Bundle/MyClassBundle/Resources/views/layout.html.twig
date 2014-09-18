@@ -26,18 +26,9 @@
 
 <div class="ui inverted page grid masthead segment">
     {% block content_header %}
-        <div class="column">
-            <div class="inverted secondary pointing ui menu">
-                <div class="header item">My Class</div>
-                    <div class="right menu">
-                        <a href="{{ path('helit_my_class_landing_index') }}" class="item">
-                            <i class="home icon"></i> Home
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {{ render(controller("HelitMyClassBundle:Helper:navbar")) }}
     {% endblock %}
+</div>
 
     <ul id="menu">
     </ul>

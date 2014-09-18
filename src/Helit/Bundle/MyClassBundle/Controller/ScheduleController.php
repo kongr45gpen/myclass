@@ -28,14 +28,8 @@ class ScheduleController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $classIDs = $this->get('request')->query->get('classes', []);
-        if (!is_array($classIDs)) {
-            $classIDs = explode(',', $classIDs);
-        }
-
-        $classes  = $em->getRepository('HelitMyClassBundle:SchoolClass')->findById($classIDs);
+        $classes  = $this->get('helit.myclass.student_info.manager')->getClasses();
         $schedule = $em->getRepository('HelitMyClassBundle:ScheduleItem')->getStudentSchedule($classes);
-
 
         return [
             'classes'  => $classes,
