@@ -2,9 +2,9 @@
 
 {% block content -%}
     <h1 class="ui header">
-        Schedule
+        {% trans %}Schedule{% endtrans %}
         <div class="sub header">
-            for
+            {{ 'for'|trans }}
             {% for class in classes -%}
                 <strong>{{ class.name }}</strong> ({{ class.orientation.fullname }})
                 {%- if not loop.last -%}
@@ -18,12 +18,12 @@
     <table class="desktop-item ui large padded celled table segment">
         <thead>
             <tr>
-                <th class="schedule-hour">Hour</th>
-                <th class="schedule-day">Monday</th>
-                <th class="schedule-day">Tuesday</th>
-                <th class="schedule-day">Wednesday</th>
-                <th class="schedule-day">Thursday</th>
-                <th class="schedule-day">Friday</th>
+                <th class="schedule-hour">{% trans %}Hour{% endtrans %}</th>
+                <th class="schedule-day">{% trans %}Monday{% endtrans %}</th>
+                <th class="schedule-day">{% trans %}Tuesday{% endtrans %}</th>
+                <th class="schedule-day">{% trans %}Wednesday{% endtrans %}</th>
+                <th class="schedule-day">{% trans %}Thursday{% endtrans %}</th>
+                <th class="schedule-day">{% trans %}Friday{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
