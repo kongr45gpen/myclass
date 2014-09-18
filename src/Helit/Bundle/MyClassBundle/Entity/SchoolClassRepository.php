@@ -23,9 +23,9 @@ class SchoolClassRepository extends EntityRepository
             FROM HelitMyClassBundle:SchoolClass c
             JOIN c.orientation o
             JOIN o.separation s
-            WHERE c in (:classes)
+            WHERE c in (:classes) OR c.default = 1
             GROUP BY c.id
-            ORDER BY priority ASC'
+            ORDER BY priority ASC, c.default DESC'
             )->setParameter('classes', array_merge($cookieClasses, $requestClasses))
             ->setParameter('prioritizedClasses', $requestClasses)
             ->getResult();

@@ -29,6 +29,13 @@ class SchoolClass
     private $name;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="default", type="boolean")
+     */
+    private $default;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Orientation", inversedBy="classes")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -134,5 +141,28 @@ class SchoolClass
     public function getSchedule()
     {
         return $this->schedule;
+    }
+
+    /**
+     * Set default
+     *
+     * @param boolean $default
+     * @return SchoolClass
+     */
+    public function setDefault($default)
+    {
+        $this->default = $default;
+
+        return $this;
+    }
+
+    /**
+     * Get default
+     *
+     * @return boolean
+     */
+    public function isDefault()
+    {
+        return $this->default;
     }
 }
