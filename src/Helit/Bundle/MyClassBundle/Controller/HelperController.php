@@ -16,9 +16,17 @@ class HelperController extends Controller
             ->getRepository('HelitMyClassBundle:Separation')
             ->findAll();
 
+        $links = $this->getDoctrine()
+            ->getRepository('HelitMyClassBundle:Link')
+            ->findAll();
+
         $request = $this->get('request_stack')->getMasterRequest();
 
-        return [ 'separations' => $separations, 'request' => $request ];
+        return [
+            'separations' => $separations,
+            'links' => $links,
+            'request' => $request
+        ];
     }
 
 }

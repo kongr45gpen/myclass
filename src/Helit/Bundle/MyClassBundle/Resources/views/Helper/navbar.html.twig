@@ -3,6 +3,14 @@
         <div class="inverted secondary pointing ui menu">
             <div class="header item">{% trans %}My Class{% endtrans %}</div>
             <div class="right menu">
+                {% for link in links %}
+                    <a href="{{ link.url }}" class="item">
+                        {%- if link.icon -%}
+                            <i class="{{ link.icon }} icon"></i>
+                        {%- endif %}
+                        {{- link.name -}}
+                    </a>
+                {% endfor %}
                 <a href="{{ path('schedule') }}" class="item">
                     <i class="empty calendar icon"></i> {% trans %}Schedule{% endtrans %}
                 </a>
