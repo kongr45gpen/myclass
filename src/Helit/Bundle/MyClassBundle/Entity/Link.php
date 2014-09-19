@@ -38,6 +38,13 @@ class Link
     /**
      * @var string
      *
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="icon", type="string", length=30, nullable=true)
      */
     private $icon;
@@ -96,6 +103,29 @@ class Link
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Link
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**

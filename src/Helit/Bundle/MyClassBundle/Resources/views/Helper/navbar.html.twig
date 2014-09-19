@@ -4,7 +4,7 @@
             <div class="header item">{% trans %}My Class{% endtrans %}</div>
             <div class="right menu">
                 {% for link in links %}
-                    <a href="{{ link.url }}" class="item">
+                    <a href="{{ link.url }}" {% if link.description %}title="{{ link.description }}" {% endif -%} class="item">
                         {%- if link.icon -%}
                             <i class="{{ link.icon }} icon"></i>
                         {%- endif %}
