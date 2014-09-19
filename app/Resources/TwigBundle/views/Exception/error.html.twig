@@ -1,0 +1,22 @@
+{% extends 'HelitMyClassBundle::layout.html.twig' %}
+
+{% block title %}An Error Occurred: {{ status_text }}{% endblock %}
+
+{% block content %}
+    <div class="red ui vertical segment">
+        <h1 class="red ui header">
+            <i class="attention icon"></i>
+            <div class="content">
+                Oops! An Error Occurred
+                <div class="sub header">The server returned a "{{ status_code }} {{ status_text }}".</div>
+            </div>
+        </h1>
+
+        <a href="{{ path('helit_my_class_landing_index') }}" class="small fluid ui vertical animated button">
+            <div class="ahidden visible content">Go Home</div>
+            <div class="avisible hidden content">
+                <i class="home icon"></i>
+            </div>
+        </a>
+    </div>
+{% endblock %}
