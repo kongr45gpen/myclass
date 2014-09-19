@@ -3,3 +3,9 @@ helit_my_class:
     type:     annotation
     prefix:   /
 
+index_php:
+    path: /index.php
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: helit_my_class_landing_index
+        permanent: true
