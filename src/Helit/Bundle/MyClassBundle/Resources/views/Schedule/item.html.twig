@@ -10,12 +10,12 @@
         </div>
 
         <div class="schedule-info">
-            <div class="pull-left small schedule ui {{ item.class.orientation.separation.colour }} label">
+            <div class="{{ item.room ? 'pull-left' : ''}} small schedule ui {{ item.class.orientation.separation.colour }} label">
                 <i class="{{ item.class.orientation.icon ?: 'right' }} icon"></i>
                 {{ item.class.orientation.separation.name|removeAccents|upper }}
             </div>
             {% if item.room %}
-                <div class="pull-right small schedule ui label"><i class="column layout icon"></i> {{ item.room }}</div>
+                <div class="pull-right small schedule ui label"><i class="column layout icon"></i> <div class="detail">{{ item.room }}</div></div>
             {% endif %}
         </div>
     </td>

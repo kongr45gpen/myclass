@@ -30,7 +30,7 @@
         {% for hour in 1..7 %}
             <tr class="schedule-row">
                 {% spaceless %}
-                    <td>{{ hour }}</td>
+                    <td class="schedule-hour">{{ hour }}</td>
                     {% for day in range(constant('\\Helit\\Bundle\\MyClassBundle\\Entity\\ScheduleItem::DAY_MONDAY'), constant('\\Helit\\Bundle\\MyClassBundle\\Entity\\ScheduleItem::DAY_FRIDAY')) %}
                         {% include('HelitMyClassBundle::Schedule/item.html.twig') %}
                     {% endfor %}

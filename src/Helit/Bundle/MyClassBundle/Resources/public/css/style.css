@@ -21,9 +21,11 @@ td.schedule {
 
 .schedule-hour {
     width: 5%;
+    text-align: right;
 }
 
-.schedule-day {
+.ui.table .schedule-day {
+    text-align: center;
     width: 19%;
 }
 
