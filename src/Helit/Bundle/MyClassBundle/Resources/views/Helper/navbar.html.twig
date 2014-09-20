@@ -36,7 +36,7 @@
                             request.attributes.get('_route_params', [])|merge
                             ({classes: class.id}))
                         %}
-                        <a class="{{ cssclass }} class-select item" href="{{ url }}" {% if popup %}data-content="{{ orientation.name }}"{% endif %}>
+                        <a class="{{ cssclass }} class-select item" href="{{ url }}" {% if popup %}data-content="{{ orientation.fullname }}"{% endif %}>
                             {{ class.name }}
                         </a>
                     {% endfor %}
