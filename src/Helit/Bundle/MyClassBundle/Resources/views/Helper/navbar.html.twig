@@ -25,14 +25,18 @@
                 {% for orientation in separation.orientations %}
                     {% for class in orientation.classes %}
                         {% set cssclass = orientation.colour %}
+                        {% set popup = separation.orientations|length > 1 %}
                         {% if student_info.selected(class, separation) %}
                             {% set cssclass = cssclass ~ ' active' %}
+                        {% endif %}
+                        {% if popup %}
+                            {% set cssclass = cssclass ~ ' class-select-popup' %}
                         {% endif %}
                         {% set url = path(request.attributes.get('_route'),
                             request.attributes.get('_route_params', [])|merge
                             ({classes: class.id}))
                         %}
-                        <a class="{{ cssclass }} item" href="{{ url }}">
+                        <a class="{{ cssclass }} class-select item" href="{{ url }}" {% if popup %}data-content="{{ orientation.name }}"{% endif %}>
                             {{ class.name }}
                         </a>
                     {% endfor %}

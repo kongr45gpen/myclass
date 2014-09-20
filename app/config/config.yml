@@ -49,6 +49,9 @@ assetic:
         semantic_css:
           inputs:
               - '%kernel.root_dir%/../vendor/semantic/ui/build/packaged/css/semantic.css'
+        semantic_js:
+          inputs:
+              - '%kernel.root_dir%/../vendor/semantic/ui/build/packaged/javascript/semantic.min.js'
         semantic_font_woff:
           inputs:
               - '%kernel.root_dir%/../vendor/semantic/ui/build/packaged/fonts/icons.woff'
