@@ -72,6 +72,9 @@ class AdminController extends Controller
             $request->getSession()->getFlashBag()->add('success',
                 'The schedule has been stored successfully.'
             );
+
+            // Regenerate the form
+            $form = $this->createCreateForm($schedule);
         }
 
         return array(
