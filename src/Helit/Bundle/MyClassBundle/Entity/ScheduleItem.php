@@ -51,14 +51,14 @@ class ScheduleItem
      *
      * @ORM\Column(name="status", type="smallint")
      */
-    private $status;
+    private $status = self::STATUS_ENABLED;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="room", type="smallint")
      */
-    private $room;
+    private $room = 0;
 
     /**
     * @ORM\ManyToOne(targetEntity="SchoolClass", inversedBy="schedule")

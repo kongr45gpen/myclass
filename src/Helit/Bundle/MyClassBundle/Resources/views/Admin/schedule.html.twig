@@ -1,0 +1,78 @@
+{% extends 'HelitMyClassBundle::layout.html.twig' %}
+
+{% form_theme form _self %}
+
+{% block segment_class %}ui basic page segment{% endblock %}
+
+{% block scheduleday_row %}
+    <tr><td class="ui red">
+        {{ form_errors(form) }}
+        {{ form_label(form) }}
+    </td>
+    {{ form_widget(form) }}
+    </tr>
+{% endblock %}
+
+{% block scheduleitem_widget %}
+    <td>
+        <div class="small inverted ui form">
+            {{ form_errors(form) }}
+            <div class="fields">
+                <div class="seven wide field">
+                    <label>{{ form_label(form.class) }}</label>
+                    {{ form_widget(form.class, { attr: {class: 'dropdown'} }) }}
+                </div>
+                <div class="three wide field">
+                    <label>{{ form_label(form.room) }}</label>
+                    {{ form_widget(form.room, { type: 'text' }) }}
+                </div>
+                <div class="six wide field">
+                    <label>{{ form_label(form.status) }}</label>
+                    {{ form_widget(form.status, { attr: {class: 'dropdown', tabindex: -1} }) }}
+                </div>
+            </div>
+        </div>
+        {{ form(form) }}
+    </td>
+{% endblock %}
+
+{% block button_widget -%}
+    {% if label is empty -%}
+        {% set label = name|humanize %}
+    {%- endif -%}
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
+        <i class="right arrow icon"></i>
+        {{ label|trans({}, translation_domain) }}
+    </button>
+{%- endblock button_widget %}
+
+{% block content -%}
+    <h1>Schedule edit</h1>
+        {{ form_start(form, { attr: {autocomplete: 'off'} }) }}
+            {{ form_label(form) }}
+
+            <div class="ui top attached header segment">
+                <h2 class="ui floated header">
+                    <i class="user icon"></i>
+                    {{ teacher.name }}
+                </h2>
+
+                {{ form_widget(form.submit, { attr: {class: 'small right floated labeled ui blue icon button'}} )}}
+            </div>
+
+
+            <table class="ui celled small padded definition schedule-edit attached table segment">
+                <thead><tr>
+                    <th>Hour</th>
+                    {% for hour in 1..7 %}
+                        <th>{{ hour }}</th>
+                    {% endfor %}
+                </tr></thead>
+
+                <tbody>
+                    {{ form_widget(form) }}
+                </tbody>
+            </table>
+
+        {{ form_end(form) }}
+{% endblock %}

@@ -26,7 +26,7 @@ class SchoolClassRepository extends EntityRepository
             WHERE c in (:classes) OR c.default = 1
             GROUP BY c.id
             ORDER BY priority ASC, c.default DESC'
-            )->setParameter('classes', array_merge($cookieClasses, $requestClasses))
+        )->setParameter('classes', array_merge($cookieClasses, $requestClasses))
             ->setParameter('prioritizedClasses', $requestClasses)
             ->getResult();
     }

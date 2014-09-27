@@ -11,6 +11,7 @@
 	{% stylesheets '@nav_background'    output='css/images/nav_bg.jpg'%} {% endstylesheets %}
 
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700' rel='stylesheet' type='text/css'>
+	<link href='//cdnjs.cloudflare.com/ajax/libs/select2/3.5.0/select2.min.css' rel='stylesheet' type='text/css'>
 	{% stylesheets
         '@semantic_css'
         '@HelitMyClassBundle/Resources/public/css/semantic.css'
@@ -72,7 +73,7 @@
 		</div>
 	{% endif %}
 
-    <div class="ui page grid feature segment">
+    <div class="{% block segment_class %}ui page grid feature segment{% endblock %}">
     	<div class="ui column">
             {% block content %}{% endblock %}
         </div>
@@ -82,6 +83,7 @@
 
 {% block javascripts %}
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.0/select2.min.js"></script>
     {% javascripts
         '@semantic_js'
         '@HelitMyClassBundle/Resources/public/js/main.js'
