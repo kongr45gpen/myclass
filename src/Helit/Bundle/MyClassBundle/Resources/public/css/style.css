@@ -48,3 +48,38 @@ td.schedule {
         display: none !important;
     }
 }
+
+.schedule-edit input {
+    height: 28px !important;
+}
+
+.schedule-edit .seven.field {
+    text-align: right;
+}
+
+.schedule-edit .three.field {
+    text-align: center;
+}
+
+.schedule-edit input:focus {
+    border-radius: 0.3125em !important;
+    box-shadow: 0 0 10px 5px #DADADF, 0px 0px 5px -1px #B5B5E9 inset !important;
+    background-color: #FAFAFA !important;
+}
+
+.schedule-edit .select2-container {
+    width: 100%;
+}
+
+.schedule-edit .select2-container-active {
+    box-shadow: 0 0 10px 1px #D5FFFF;
+    border-radius: 5px;
+}
+
+button.schedule-edit-action {
+    padding-top: 9px !important;
+}
+
+.schedule-edit-action {
+    height: 34px;
+}

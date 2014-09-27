@@ -5,3 +5,5 @@ $('.class-select-popup')
         variation: 'small inverted',
     })
 ;
+
+$(document).ready(function() { $(".dropdown").select2(); });

@@ -1,6 +1,7 @@
 /web/bundles/
 /web/assetic/
 /web/css/
+/web/js/
 /web/fonts/
 /web/images/
 /app/bootstrap.php.cache
@@ -13,6 +14,7 @@
 /vendor/
 /bin/
 /composer.phar
+/components
 
 # OS generated files #
 ######################
