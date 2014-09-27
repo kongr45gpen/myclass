@@ -14,8 +14,8 @@
 {% endblock %}
 
 {% block scheduleitem_widget %}
-    <td>
-        <div class="small inverted ui form">
+    <td class="{{ attr.class|default('') }}">
+        <div class="small ui form">
             {{ form_errors(form) }}
             <div class="fields">
                 <div class="seven wide field">
@@ -57,7 +57,13 @@
                     {{ teacher.name }}
                 </h2>
 
-                {{ form_widget(form.submit, { attr: {class: 'small right floated labeled ui blue icon button'}} )}}
+                <div class="ui two small right floated buttons">
+                    <a href="{{ path('admin') }}" class="labeled ui black icon schedule-edit-action button">
+                        <i class="left arrow icon"></i>
+                        Back
+                    </a>
+                    {{ form_widget(form.submit, { attr: {class: 'right labeled ui blue icon schedule-edit-action button'}} )}}
+                </div>
             </div>
 
 

@@ -75,3 +75,11 @@ td.schedule {
     box-shadow: 0 0 10px 1px #D5FFFF;
     border-radius: 5px;
 }
+
+button.schedule-edit-action {
+    padding-top: 9px !important;
+}
+
+.schedule-edit-action {
+    height: 34px;
+}
