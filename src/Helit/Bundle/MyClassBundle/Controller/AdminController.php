@@ -4,12 +4,9 @@ namespace Helit\Bundle\MyClassBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Helit\Bundle\MyClassBundle\Entity\ScheduleItem;
-use Helit\Bundle\MyClassBundle\Form\ScheduleItemType;
-use Helit\Bundle\MyClassBundle\Form\ScheduleDayType;
 use Helit\Bundle\MyClassBundle\Form\ScheduleType;
 use Helit\Bundle\MyClassBundle\Entity\Teacher;
 
@@ -20,20 +17,37 @@ use Helit\Bundle\MyClassBundle\Entity\Teacher;
  */
 class AdminController extends Controller
 {
+    /**
+     * Index for the administration panel
+     *
+     * @Route("/", name="admin")
+     * @Template()
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $teachers = $em->getRepository('HelitMyClassBundle:Teacher')
+            ->findAll();
+
+        return array(
+            'teachers' => $teachers,
+        );
+    }
 
     /**
      * Edit the schedule for a teacher
      *
-     * @Route("/schedule/{teacher}", name="admin")
+     * @Route("/schedule/{teacher}", name="admin_schedule")
      * @Template()
      */
     public function scheduleAction(Request $request, Teacher $teacher)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $schedule = $em->getRepository('HelitMyClassBundle:ScheduleItem')->getTeacherSchedule($teacher);
+        $schedule = $em->getRepository('HelitMyClassBundle:ScheduleItem')
+            ->getTeacherSchedule($teacher);
 
-        $entity = new ScheduleItem();
         $form = $this->createCreateForm($schedule);
         $form->handleRequest($request);
 

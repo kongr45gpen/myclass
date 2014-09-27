@@ -1,0 +1,22 @@
+{% extends 'HelitMyClassBundle::layout.html.twig' %}
+
+{% block content -%}
+    <h2 class="ui dividing header">
+        <i class="settings icon"></i>
+        <div class="content">
+            {% trans %}Administration{% endtrans %}
+        </div>
+    </h2>
+
+    <div class="ui piled segment">
+        <h2>Schedule</h2>
+        <div class="ui tiny animated selection link list">
+            {% for teacher in teachers -%}
+                <a class="item" href="{{ path('admin_schedule', { teacher: teacher.id })}}">
+                    <i class="user icon"></i>
+                    <div class="content">{{ teacher.name }}</div>
+                </a>
+            {%- endfor %}
+        </div>
+    </div>
+{% endblock %}
