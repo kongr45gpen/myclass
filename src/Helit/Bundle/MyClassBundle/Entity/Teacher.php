@@ -29,6 +29,13 @@ class Teacher
     private $name;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="favorite_room", type="smallint")
+     */
+    private $favoriteRoom = 0;
+
+    /**
      * @ORM\OneToMany(targetEntity="ScheduleItem", mappedBy="teacher")
      */
     private $schedule;
@@ -100,10 +107,33 @@ class Teacher
     /**
      * Get schedule
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getSchedule()
     {
         return $this->schedule;
+    }
+
+    /**
+     * Set favorite room
+     *
+     * @param integer $favoriteRoom
+     * @return Teacher
+     */
+    public function setFavoriteRoom($favoriteRoom)
+    {
+        $this->favoriteRoom = $favoriteRoom;
+
+        return $this;
+    }
+
+    /**
+     * Get favorite room
+     *
+     * @return integer
+     */
+    public function getFavoriteRoom()
+    {
+        return $this->favoriteRoom;
     }
 }

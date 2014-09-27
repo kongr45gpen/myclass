@@ -61,7 +61,8 @@ class ScheduleItemRepository extends EntityRepository
                     $return[$day][$hour] = (new ScheduleItem())
                         ->setDay($day)
                         ->setHour($hour)
-                        ->setTeacher($teacher);
+                        ->setTeacher($teacher)
+                        ->setRoom($teacher->getFavoriteRoom());
                 }
             }
         }
