@@ -1,0 +1,23 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">{{ settings.title }}</h3>
+        </div>
+
+        <div class="box-body">
+            {% if teachers is not empty %}
+                <div class="list-group">
+                    {% for teacher in teachers %}
+                        <a href="{{ path('admin_schedule', { teacher: teacher.id })}}" rel="nofollow" title="{{ teacher.name }}" class="list-group-item">
+                            {{ teacher.name }}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                    No teachers available.
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

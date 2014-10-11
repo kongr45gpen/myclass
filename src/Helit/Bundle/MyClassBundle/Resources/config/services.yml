@@ -3,9 +3,48 @@ services:
         class: Helit\Bundle\MyClassBundle\Twig\HelitMyClassExtension
         tags:
             - { name: twig.extension }
+
     helit.myclass.student_info.manager:
         class: Helit\Bundle\MyClassBundle\StudentInfo\StudentInfoManager
         arguments: ["@request_stack", "@doctrine.orm.entity_manager"]
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
+    helit.myclass.block.teacher_schedule:
+        class: Helit\Bundle\MyClassBundle\Block\TeacherScheduleBlock
+        arguments: ["helit.myclass.block.teacher_schedule", "@templating"]
+        calls:
+            - [setEntityManager, ["@doctrine.orm.entity_manager"]]
+        tags:
+            - { name: sonata.block }
+
+    helit_my_class.admin.separation:
+        class: Helit\Bundle\MyClassBundle\Admin\SeparationAdmin
+        arguments: [~, Helit\Bundle\MyClassBundle\Entity\Separation, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Separation}
+
+    helit_my_class.admin.school_class:
+        class: Helit\Bundle\MyClassBundle\Admin\SchoolClassAdmin
+        arguments: [~, Helit\Bundle\MyClassBundle\Entity\SchoolClass, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: SchoolClass}
+
+    helit_my_class.admin.orientation:
+        class: Helit\Bundle\MyClassBundle\Admin\OrientationAdmin
+        arguments: [~, Helit\Bundle\MyClassBundle\Entity\Orientation, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Orientation}
+
+    helit_my_class.admin.link:
+        class: Helit\Bundle\MyClassBundle\Admin\LinkAdmin
+        arguments: [~, Helit\Bundle\MyClassBundle\Entity\Link, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Link}
+
+    helit_my_class.admin.teacher:
+        class: Helit\Bundle\MyClassBundle\Admin\TeacherAdmin
+        arguments: [~, Helit\Bundle\MyClassBundle\Entity\Teacher, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Teacher}

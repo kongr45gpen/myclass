@@ -102,3 +102,25 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Helit\Bundle\MyClassBundle\Entity\User
+
+# Sonata block configuration
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
+        helit.myclass.block.teacher_schedule:
+            contexts:   [admin]
+
+# Sonata admin configuration
+sonata_admin:
+    dashboard:
+        blocks:
+            -
+                position: left
+                type: sonata.admin.block.admin_list
+            -
+                position: right
+                type: helit.myclass.block.teacher_schedule
