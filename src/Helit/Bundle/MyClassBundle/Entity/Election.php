@@ -29,11 +29,32 @@ class Election
     private $name;
 
     /**
-     * @var array
+     * @var integer
      *
-     * @ORM\Column(name="data", type="json_array")
+     * @ORM\Column(name="green_threshold", type="integer")
      */
-    private $data;
+    private $greenThreshold = 18;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="yellow_threshold", type="integer")
+     */
+    private $yellowThreshold = 15;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="valid_ballots", type="integer")
+     */
+    private $validBallots;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="invalid_ballots", type="integer")
+     */
+    private $invalidBallots;
 
     /**
      * @ORM\OneToMany(targetEntity="Candidate", mappedBy="election")
@@ -73,70 +94,6 @@ class Election
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set data
-     *
-     * @param array $data
-     * @return Election
-     */
-    public function setData($data)
-    {
-        $this->data = $data;
-
-        return $this;
-    }
-
-    /**
-     * Get data
-     *
-     * @return array
-     */
-    public function getData()
-    {
-        return $this->data;
-    }
-
-    /**
-     * Get green colour threshold
-     *
-     * @return int
-     */
-    public function getGreenThreshold()
-    {
-        return $this->data('greenThreshold', 15);
-        return (isset($this->data['greenThreshold'])) ? $this->data['greenThreshold'] : 15;
-    }
-
-    /**
-     * Get yellow colour threshold
-     *
-     * @return int
-     */
-    public function getYellowThreshold()
-    {
-        return $this->data('yellowThreshold', 18);
-    }
-
-    /**
-     * Get valid ballot count
-     *
-     * @return int
-     */
-    public function getValidBallots()
-    {
-        return $this->data('validBallots', 0);
-    }
-
-    /**
-     * Get invalid ballot count
-     *
-     * @return int
-     */
-    public function getInvalidBallots()
-    {
-        return $this->data('invalidBallots', 0);
     }
 
     /**
@@ -191,14 +148,94 @@ class Election
     }
 
     /**
-     * Get value from data
+     * Set greenThreshold
      *
-     * @param string $key The data array key
-     * @param mixed  $default The default value to return
-     *
-     * @return mixed
+     * @param integer $greenThreshold
+     * @return Election
      */
-    private function data($key, $default = null) {
-        return (isset($this->data[$key])) ? $this->data[$key] : $default;
+    public function setGreenThreshold($greenThreshold)
+    {
+        $this->greenThreshold = $greenThreshold;
+
+        return $this;
+    }
+
+    /**
+     * Get greenThreshold
+     *
+     * @return integer
+     */
+    public function getGreenThreshold()
+    {
+        return $this->greenThreshold;
+    }
+
+    /**
+     * Set yellowThreshold
+     *
+     * @param integer $yellowThreshold
+     * @return Election
+     */
+    public function setYellowThreshold($yellowThreshold)
+    {
+        $this->yellowThreshold = $yellowThreshold;
+
+        return $this;
+    }
+
+    /**
+     * Get yellowThreshold
+     *
+     * @return integer
+     */
+    public function getYellowThreshold()
+    {
+        return $this->yellowThreshold;
+    }
+
+    /**
+     * Set validBallots
+     *
+     * @param integer $validBallots
+     * @return Election
+     */
+    public function setValidBallots($validBallots)
+    {
+        $this->validBallots = $validBallots;
+
+        return $this;
+    }
+
+    /**
+     * Get validBallots
+     *
+     * @return integer
+     */
+    public function getValidBallots()
+    {
+        return $this->validBallots;
+    }
+
+    /**
+     * Set invalidBallots
+     *
+     * @param integer $invalidBallots
+     * @return Election
+     */
+    public function setInvalidBallots($invalidBallots)
+    {
+        $this->invalidBallots = $invalidBallots;
+
+        return $this;
+    }
+
+    /**
+     * Get invalidBallots
+     *
+     * @return integer
+     */
+    public function getInvalidBallots()
+    {
+        return $this->invalidBallots;
     }
 }

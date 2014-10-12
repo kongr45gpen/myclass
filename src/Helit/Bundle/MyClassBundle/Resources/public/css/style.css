@@ -83,3 +83,7 @@ button.schedule-edit-action {
 .schedule-edit-action {
     height: 34px;
 }
+
+.election-position {
+    text-align: right;
+}

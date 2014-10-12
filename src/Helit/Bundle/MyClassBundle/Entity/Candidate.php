@@ -29,18 +29,25 @@ class Candidate
     private $name;
 
     /**
-     * @var integer
+     * @var integer[]
      *
-     * @ORM\Column(name="total_votes", type="integer")
+     * @ORM\Column(name="totalvotes", type="integer")
      */
     private $totalVotes;
 
     /**
-     * @var array
+     * @var integer[]
      *
-     * @ORM\Column(name="data", type="json_array")
+     * @ORM\Column(name="votes", type="simple_array")
      */
-    private $data;
+    private $votes;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="grade", type="integer")
+     */
+    private $grade;
 
     /**
      * @ORM\ManyToOne(targetEntity="Election", inversedBy="candidates")
@@ -48,11 +55,10 @@ class Candidate
      */
     private $election;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -75,67 +81,11 @@ class Candidate
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set totalVotes
-     *
-     * @param integer $totalVotes
-     * @return Candidate
-     */
-    public function setTotalVotes($totalVotes)
-    {
-        $this->totalVotes = $totalVotes;
-
-        return $this;
-    }
-
-    /**
-     * Get totalVotes
-     *
-     * @return integer 
-     */
-    public function getTotalVotes()
-    {
-        return $this->totalVotes;
-    }
-
-    /**
-     * Set data
-     *
-     * @param array $data
-     * @return Candidate
-     */
-    public function setData($data)
-    {
-        $this->data = $data;
-
-        return $this;
-    }
-
-    /**
-     * Get data
-     *
-     * @return array 
-     */
-    public function getData()
-    {
-        return $this->data;
-    }
-
-    /**
-     * Get grade
-     *
-     * @return int
-     */
-    public function getGrade()
-    {
-        return $this->data['class'];
     }
 
     /**
@@ -154,10 +104,67 @@ class Candidate
     /**
      * Get election
      *
-     * @return \Helit\Bundle\MyClassBundle\Entity\Election 
+     * @return \Helit\Bundle\MyClassBundle\Entity\Election
      */
     public function getElection()
     {
         return $this->election;
+    }
+
+    /**
+     * Set votes
+     *
+     * @param array $votes
+     * @return Candidate
+     */
+    public function setVotes($votes)
+    {
+        $this->votes = $votes;
+        $this->totalVotes = array_sum($votes);
+
+        return $this;
+    }
+
+    /**
+     * Get votes
+     *
+     * @return array
+     */
+    public function getVotes()
+    {
+        return $this->votes;
+    }
+
+    /**
+     * Set grade
+     *
+     * @param integer $grade
+     * @return Candidate
+     */
+    public function setGrade($grade)
+    {
+        $this->grade = $grade;
+
+        return $this;
+    }
+
+    /**
+     * Get grade
+     *
+     * @return integer
+     */
+    public function getGrade()
+    {
+        return $this->grade;
+    }
+
+    /**
+     * Get total votes
+     *
+     * @return integer
+     */
+    public function getTotalVotes()
+    {
+        return $this->totalVotes;
     }
 }

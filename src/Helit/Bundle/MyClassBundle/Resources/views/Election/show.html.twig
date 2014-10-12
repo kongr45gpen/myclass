@@ -8,7 +8,7 @@
     <table class="ui sortable table segment">
         <thead>
             <tr>
-                <th>{% trans %}Pos.{% endtrans %}</th>
+                <th class="one wide election-position">{% trans %}Pos.{% endtrans %}</th>
                 <th>{% trans %}Name{% endtrans %}</th>
                 <th>{% trans %}Votes{% endtrans %}</th>
                 <th>{% trans %}Grade{% endtrans %}</th>
@@ -30,7 +30,7 @@
                 {%- endif -%}
 
                 <tr class="{{ class }}">
-                    <td>{{ index }}</td>
+                    <td class="election-position">{{ index }}</td>
                     <td>{{ candidate.name }}</td>
                     <td>{{ candidate.totalVotes }}</td>
                     <td>{{ grade(candidate.grade)|trans }}</td>
