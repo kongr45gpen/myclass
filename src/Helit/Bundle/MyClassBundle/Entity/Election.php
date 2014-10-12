@@ -238,4 +238,26 @@ class Election
     {
         return $this->invalidBallots;
     }
+
+    /**
+     * Gets the grade distribution of votes
+     *
+     * @return array [ voting_grade => [ voted_grade => vote_count ])
+     */
+    public function getVoteGradeDistribution()
+    {
+        $return = [];
+
+        foreach ($this->candidates as $candidate) {
+            foreach ($candidate->getVotes() as $voteGrade => $votes) {
+                if (isset($return[$candidate->getGrade()][$voteGrade])) {
+                    $return[$candidate->getGrade()][$voteGrade] += $votes;
+                } else {
+                    $return[$candidate->getGrade()][$voteGrade] = $votes;
+                }
+            }
+        }
+
+        return $return;
+    }
 }
