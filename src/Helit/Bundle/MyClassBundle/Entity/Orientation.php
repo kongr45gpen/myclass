@@ -226,4 +226,14 @@ class Orientation
     {
         return $this->icon;
     }
+
+    /**
+     * Convert to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

@@ -11,6 +11,11 @@
                         {{- link.name -}}
                     </a>
                 {% endfor %}
+                {% for election in elections %}
+                    <a href="{{ path('elections_show', { id: election.id }) }}" class="item">
+                        <i class="signal icon"></i> {{ election.name -}}
+                    </a>
+                {% endfor %}
                 <a href="{{ path('schedule') }}" class="item">
                     <i class="empty calendar icon"></i> {% trans %}Schedule{% endtrans %}
                 </a>

@@ -6,4 +6,6 @@ $('.class-select-popup')
     })
 ;
 
-$(document).ready(function() { $(".dropdown").select2(); });
+$(document).ready(function() {
+    $(".dropdown").select2();
+});
