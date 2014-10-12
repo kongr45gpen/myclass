@@ -20,11 +20,16 @@ class HelperController extends Controller
             ->getRepository('HelitMyClassBundle:Link')
             ->findAll();
 
+        $elections = $this->getDoctrine()
+            ->getRepository('HelitMyClassBundle:Election')
+            ->findAll();
+
         $request = $this->get('request_stack')->getMasterRequest();
 
         return [
             'separations' => $separations,
             'links' => $links,
+            'elections' => $elections,
             'request' => $request
         ];
     }

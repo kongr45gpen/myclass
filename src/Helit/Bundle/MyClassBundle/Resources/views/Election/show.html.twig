@@ -1,0 +1,50 @@
+{% extends 'HelitMyClassBundle::layout.html.twig' %}
+{% from _self import grade %}
+
+{% block content -%}
+    <h1 class="ui dividing header">{{ election.name }}</h1>
+
+    <table class="ui table segment">
+        <thead>
+            <tr>
+                <th>{% trans %}Pos.{% endtrans %}</th>
+                <th>{% trans %}Name{% endtrans %}</th>
+                <th>{% trans %}Votes{% endtrans %}</th>
+                <th>{% trans %}Grade{% endtrans %}</th>
+            </tr>
+
+            {% set last_total_votes = null %}
+            {% set index = 0 %}
+            {% for candidate in election.candidates %}
+                {%- if candidate.totalVotes is not sameas(last_total_votes) -%}
+                    {%- set index = loop.index -%}
+                {%- endif -%}
+
+                {%- if index <= election.greenThreshold -%}
+                    {% set class = 'positive' %}
+                {%- elseif index <= election.yellowThreshold -%}
+                    {% set class = 'warning' %}
+                {%- else -%}
+                    {% set class = 'negative' %}
+                {%- endif -%}
+
+                <tr class="{{ class }}">
+                    <td>{{ index }}</td>
+                    <td>{{ candidate.name }}</td>
+                    <td>{{ candidate.totalVotes }}</td>
+                    <td>{{ grade(candidate.grade)|trans }}</td>
+                </tr>
+
+                {%- set last_total_votes = candidate.totalVotes -%}
+            {% endfor %}
+        </thead>
+    </table>
+
+{% endblock %}
+
+{% macro grade(id) %}
+    {%- if     id == 1 -%}A
+    {%- elseif id == 2 -%}B
+    {%- elseif id == 3 -%}C
+    {%- else -%}?{%- endif -%}
+{% endmacro %}
