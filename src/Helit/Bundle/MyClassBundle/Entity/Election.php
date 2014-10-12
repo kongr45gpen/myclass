@@ -45,7 +45,7 @@ class Election
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -68,7 +68,7 @@ class Election
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -91,7 +91,7 @@ class Election
     /**
      * Get data
      *
-     * @return array 
+     * @return array
      */
     public function getData()
     {
@@ -105,6 +105,7 @@ class Election
      */
     public function getGreenThreshold()
     {
+        return $this->data('greenThreshold', 15);
         return (isset($this->data['greenThreshold'])) ? $this->data['greenThreshold'] : 15;
     }
 
@@ -115,7 +116,37 @@ class Election
      */
     public function getYellowThreshold()
     {
-        return (isset($this->data['yellowThreshold'])) ? $this->data['yellowThreshold'] : 18;
+        return $this->data('yellowThreshold', 18);
+    }
+
+    /**
+     * Get valid ballot count
+     *
+     * @return int
+     */
+    public function getValidBallots()
+    {
+        return $this->data('validBallots', 0);
+    }
+
+    /**
+     * Get invalid ballot count
+     *
+     * @return int
+     */
+    public function getInvalidBallots()
+    {
+        return $this->data('invalidBallots', 0);
+    }
+
+    /**
+     * Get total ballot count
+     *
+     * @return int
+     */
+    public function getBallots()
+    {
+        return $this->getValidBallots() + $this->getInvalidBallots();
     }
 
     /**
@@ -152,10 +183,22 @@ class Election
     /**
      * Get candidates
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCandidates()
     {
         return $this->candidates;
+    }
+
+    /**
+     * Get value from data
+     *
+     * @param string $key The data array key
+     * @param mixed  $default The default value to return
+     *
+     * @return mixed
+     */
+    private function data($key, $default = null) {
+        return (isset($this->data[$key])) ? $this->data[$key] : $default;
     }
 }
