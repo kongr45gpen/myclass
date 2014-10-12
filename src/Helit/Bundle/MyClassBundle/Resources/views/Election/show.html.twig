@@ -9,9 +9,10 @@
         <thead>
             <tr>
                 <th class="one wide election-position">{% trans %}Pos.{% endtrans %}</th>
-                <th>{% trans %}Name{% endtrans %}</th>
+                <th class="seven wide">{% trans %}Name{% endtrans %}</th>
                 <th>{% trans %}Votes{% endtrans %}</th>
                 <th>{% trans %}Grade{% endtrans %}</th>
+                <th class="two wide">{% trans %}Most votes from{% endtrans %}</th>
             </tr>
 
             {% set last_total_votes = null %}
@@ -32,8 +33,14 @@
                 <tr class="{{ class }}">
                     <td class="election-position">{{ index }}</td>
                     <td>{{ candidate.name }}</td>
-                    <td>{{ candidate.totalVotes }}</td>
+                    <td><strong>{{ candidate.totalVotes }}</strong></td>
                     <td>{{ grade(candidate.grade)|trans }}</td>
+                    <td>
+                        {%- for grade in candidate.popularOnGrades -%}
+                            {{- grade(grade)|trans -}}
+                            {%- if not loop.last %}, {% endif -%}
+                        {%- endfor -%}
+                    </td>
                 </tr>
 
                 {%- set last_total_votes = candidate.totalVotes -%}
@@ -92,8 +99,8 @@
 {% endblock %}
 
 {% macro grade(id) %}
-    {%- if     id == 1 -%}A
-    {%- elseif id == 2 -%}B
-    {%- elseif id == 3 -%}C
+    {%- if     id == 0 -%}A
+    {%- elseif id == 1 -%}B
+    {%- elseif id == 2 -%}C
     {%- else -%}?{%- endif -%}
 {% endmacro %}

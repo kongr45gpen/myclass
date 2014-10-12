@@ -167,4 +167,14 @@ class Candidate
     {
         return $this->totalVotes;
     }
+
+    /**
+     * Get the grades on which the candidate is most popular
+     *
+     * @return integer[]
+     */
+    public function getPopularOnGrades()
+    {
+        return array_keys($this->votes, max($this->votes));
+    }
 }
