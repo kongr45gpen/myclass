@@ -1,52 +1,54 @@
-<div class="column">
-    <div class="inverted secondary tiered ui menu">
-        <div class="inverted secondary pointing ui menu">
-            <div class="header item">{% trans %}My Class{% endtrans %}</div>
-            <div class="right menu">
-                {% for link in links %}
-                    <a href="{{ link.url }}" {% if link.description %}title="{{ link.description }}" {% endif -%} class="item">
-                        {%- if link.icon -%}
-                            <i class="{{ link.icon }} icon"></i>
-                        {%- endif %}
-                        {{- link.name -}}
-                    </a>
-                {% endfor %}
-                {% for election in elections %}
-                    <a href="{{ path('elections_show', { id: election.id }) }}" class="item">
-                        <i class="signal icon"></i> {{ election.name -}}
-                    </a>
-                {% endfor %}
-                <a href="{{ path('schedule') }}" class="item">
-                    <i class="empty calendar icon"></i> {% trans %}Schedule{% endtrans %}
-                </a>
-                <a href="{{ path('helit_my_class_landing_index') }}" class="item">
-                    <i class="home icon"></i> {% trans %}Home{% endtrans %}
-                </a>
-            </div>
-        </div>
-        <div class="ui secondary pointing sub menu">
-            {% for separation in separations %}
-                <div class="header item">{{ separation.name }}</div>
-                {% for orientation in separation.orientations %}
-                    {% for class in orientation.classes %}
-                        {% set cssclass = orientation.colour %}
-                        {% set popup = separation.orientations|length > 1 %}
-                        {% if student_info.selected(class, separation) %}
-                            {% set cssclass = cssclass ~ ' active' %}
-                        {% endif %}
-                        {% if popup %}
-                            {% set cssclass = cssclass ~ ' class-select-popup' %}
-                        {% endif %}
-                        {% set url = path(request.attributes.get('_route'),
-                            request.attributes.get('_route_params', [])|merge
-                            ({classes: class.id}))
-                        %}
-                        <a class="{{ cssclass }} class-select item" href="{{ url }}" {% if popup %}data-content="{{ orientation.fullname }}"{% endif %}>
-                            {{ class.name }}
+<div class="ui page grid">
+    <div class="column">
+        <div class="inverted secondary tiered ui menu">
+            <div class="inverted secondary pointing ui menu">
+                <div class="header item">{% trans %}My Class{% endtrans %}</div>
+                <div class="right menu">
+                    {% for link in links %}
+                        <a href="{{ link.url }}" {% if link.description %}title="{{ link.description }}" {% endif -%} class="item">
+                            {%- if link.icon -%}
+                                <i class="{{ link.icon }} icon"></i>
+                            {%- endif %}
+                            {{- link.name -}}
                         </a>
                     {% endfor %}
+                    {% for election in elections %}
+                        <a href="{{ path('elections_show', { id: election.id }) }}" class="item">
+                            <i class="signal icon"></i> {{ election.name -}}
+                        </a>
+                    {% endfor %}
+                    <a href="{{ path('schedule') }}" class="item">
+                        <i class="empty calendar icon"></i> {% trans %}Schedule{% endtrans %}
+                    </a>
+                    <a href="{{ path('helit_my_class_landing_index') }}" class="item">
+                        <i class="home icon"></i> {% trans %}Home{% endtrans %}
+                    </a>
+                </div>
+            </div>
+            <div class="ui secondary pointing sub menu">
+                {% for separation in separations %}
+                    <div class="header item">{{ separation.name }}</div>
+                    {% for orientation in separation.orientations %}
+                        {% for class in orientation.classes %}
+                            {% set cssclass = orientation.colour %}
+                            {% set popup = separation.orientations|length > 1 %}
+                            {% if student_info.selected(class, separation) %}
+                                {% set cssclass = cssclass ~ ' active' %}
+                            {% endif %}
+                            {% if popup %}
+                                {% set cssclass = cssclass ~ ' class-select-popup' %}
+                            {% endif %}
+                            {% set url = path(request.attributes.get('_route'),
+                                request.attributes.get('_route_params', [])|merge
+                                ({classes: class.id}))
+                            %}
+                            <a class="{{ cssclass }} class-select item" href="{{ url }}" {% if popup %}data-content="{{ orientation.fullname }}"{% endif %}>
+                                {{ class.name }}
+                            </a>
+                        {% endfor %}
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
+            </div>
         </div>
     </div>
 </div>

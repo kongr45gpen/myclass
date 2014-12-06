@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2072400ce5b53cb8bfcb19df14f741a6",
+    "hash": "2d64914c4d5426283595987128a40b5c",
     "packages": [
         {
             "name": "components/jquery",
@@ -1318,16 +1318,16 @@
         },
         {
             "name": "semantic/ui",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Semantic-Org/Semantic-UI.git",
-                "reference": "139adda3cc7584f075cf2c073a95d5cb2c0113b8"
+                "reference": "6ee17a7988e1f2d902eb1f9f20da3747670233b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Semantic-Org/Semantic-UI/zipball/139adda3cc7584f075cf2c073a95d5cb2c0113b8",
-                "reference": "139adda3cc7584f075cf2c073a95d5cb2c0113b8",
+                "url": "https://api.github.com/repos/Semantic-Org/Semantic-UI/zipball/6ee17a7988e1f2d902eb1f9f20da3747670233b1",
+                "reference": "6ee17a7988e1f2d902eb1f9f20da3747670233b1",
                 "shasum": ""
             },
             "type": "library",
@@ -1350,7 +1350,7 @@
                 "semantic",
                 "ui"
             ],
-            "time": "2014-12-04 06:02:14"
+            "time": "2014-11-24 09:11:42"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -2800,7 +2800,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "semantic/ui": 20,
         "friendsofsymfony/user-bundle": 20
     },
     "prefer-stable": false,

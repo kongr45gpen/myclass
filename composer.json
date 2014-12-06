@@ -18,7 +18,7 @@
         "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
-        "semantic/ui": "dev-master",
+        "semantic/ui": ">=1.0.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "ivaynberg/select2": "~3.5",
         "sonata-project/admin-bundle": "~2.3",

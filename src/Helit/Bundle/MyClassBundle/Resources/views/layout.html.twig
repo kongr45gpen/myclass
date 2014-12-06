@@ -3,11 +3,11 @@
 {% block title 'MyClass'|trans %}
 
 {% block stylesheets %}
-	{% stylesheets '@semantic_font_woff' output='fonts/icons.woff'%} {% endstylesheets %}
-	{% stylesheets '@semantic_font_ttf' output='fonts/icons.ttf'%} {% endstylesheets %}
-	{% stylesheets '@semantic_font_eot' output='fonts/icons.eot'%} {% endstylesheets %}
-	{% stylesheets '@semantic_font_svg' output='fonts/icons.svg'%} {% endstylesheets %}
-	{% stylesheets '@semantic_font_otf' output='fonts/icons.otf'%} {% endstylesheets %}
+	{% stylesheets '@semantic_font_woff' output='css/themes/default/assets/fonts/icons.woff'%} {% endstylesheets %}
+	{% stylesheets '@semantic_font_ttf' output='css/themes/default/assets/fonts/icons.ttf'%} {% endstylesheets %}
+	{% stylesheets '@semantic_font_eot' output='css/themes/default/assets/fonts/icons.eot'%} {% endstylesheets %}
+	{% stylesheets '@semantic_font_svg' output='css/themes/default/assets/fonts/icons.svg'%} {% endstylesheets %}
+	{% stylesheets '@semantic_font_otf' output='css/themes/default/assets/fonts/icons.otf'%} {% endstylesheets %}
 	{% stylesheets '@nav_background'    output='css/images/nav_bg.jpg'%} {% endstylesheets %}
 
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700' rel='stylesheet' type='text/css'>
@@ -25,7 +25,7 @@
 
 {% block body %}
 
-<div class="ui inverted page grid masthead segment">
+<div class="ui inverted masthead navbar segment">
     {% block content_header %}
         {{ render(controller("HelitMyClassBundle:Helper:navbar")) }}
     {% endblock %}

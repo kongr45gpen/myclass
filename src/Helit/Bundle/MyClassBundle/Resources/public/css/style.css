@@ -33,6 +33,10 @@ td.schedule {
     height: 92px;
 }
 
+.navbar {
+    border-radius: 0 !important;
+}
+
 .ui.inverted.tiered.menu .sub.menu .header.item {
     color: rgba(255, 255, 255, 0.85) !important;
 }
