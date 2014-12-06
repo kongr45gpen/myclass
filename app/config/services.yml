@@ -1,0 +1,50 @@
+services:
+    app.twig.app_extension:
+        class: AppBundle\Twig\AppExtension
+        tags:
+            - { name: twig.extension }
+
+    app.student_info.manager:
+        class: AppBundle\StudentInfo\StudentInfoManager
+        arguments: ["@request_stack", "@doctrine.orm.entity_manager"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
+    app.block.teacher_schedule:
+        class: AppBundle\Block\TeacherScheduleBlock
+        arguments: ["app.block.teacher_schedule", "@templating"]
+        calls:
+            - [setEntityManager, ["@doctrine.orm.entity_manager"]]
+        tags:
+            - { name: sonata.block }
+
+    app.admin.separation:
+        class: AppBundle\Admin\SeparationAdmin
+        arguments: [~, AppBundle\Entity\Separation, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Separation}
+
+    app.admin.school_class:
+        class: AppBundle\Admin\SchoolClassAdmin
+        arguments: [~, AppBundle\Entity\SchoolClass, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: SchoolClass}
+
+    app.admin.orientation:
+        class: AppBundle\Admin\OrientationAdmin
+        arguments: [~, AppBundle\Entity\Orientation, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Orientation}
+
+    app.admin.link:
+        class: AppBundle\Admin\LinkAdmin
+        arguments: [~, AppBundle\Entity\Link, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Link}
+
+    app.admin.teacher:
+        class: AppBundle\Admin\TeacherAdmin
+        arguments: [~, AppBundle\Entity\Teacher, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Teacher}

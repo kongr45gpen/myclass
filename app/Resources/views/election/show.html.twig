@@ -1,0 +1,142 @@
+{% extends 'layout.html.twig' %}
+{% from _self import grade %}
+
+{% block content -%}
+    <h1 class="ui dividing header">{{ election.name }}</h1>
+
+    <h2 class="ui header">{% trans %}Results{% endtrans %}</h2>
+    <table class="ui sortable table segment">
+        <thead>
+            <tr>
+                <th class="one wide election-position">{% trans %}Pos.{% endtrans %}</th>
+                <th class="seven wide">{% trans %}Name{% endtrans %}</th>
+                <th>{% trans %}Votes{% endtrans %}</th>
+                <th>{% trans %}Grade{% endtrans %}</th>
+                <th class="two wide">{% trans %}Most votes from{% endtrans %}</th>
+            </tr>
+
+            {% set last_total_votes = null %}
+            {% set index = 0 %}
+            {% for candidate in election.candidates %}
+                {%- if candidate.totalVotes is not sameas(last_total_votes) -%}
+                    {%- set index = loop.index -%}
+                {%- endif -%}
+
+                {%- if index <= election.greenThreshold -%}
+                    {% set class = 'positive' %}
+                {%- elseif index <= election.yellowThreshold -%}
+                    {% set class = 'warning' %}
+                {%- else -%}
+                    {% set class = 'negative' %}
+                {%- endif -%}
+
+                <tr class="{{ class }}">
+                    <td class="election-position">{{ index }}</td>
+                    <td>{{ candidate.name }}</td>
+                    <td><strong>{{ candidate.totalVotes }}</strong></td>
+                    <td>{{ grade(candidate.grade)|trans }}</td>
+                    <td>
+                        {%- for grade in candidate.popularOnGrades -%}
+                            {{- grade(grade)|trans -}}
+                            {%- if not loop.last %}, {% endif -%}
+                        {%- endfor -%}
+                    </td>
+                </tr>
+
+                {%- set last_total_votes = candidate.totalVotes -%}
+            {% endfor %}
+        </thead>
+    </table>
+
+    <h2 class="ui header">{% trans %}Statistics{% endtrans %}</h2>
+    <div class="ui grid">
+        <div class="eight wide column">
+            <h4 class="ui top teal center aligned inverted attached header">
+                {% trans %}Valid/Invalid ballots{% endtrans %}
+            </h4>
+            <div class="ui raised primary segment attached" id="chart_div"></div>
+        </div>
+        <div class="eight wide column">
+            <h4 class="ui top blue center aligned inverted attached header">
+                {% trans %}Vote distribution on grades{% endtrans %}
+            </h4>
+            <div class="ui raised primary segment attached" id="sankey_div"></div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block pagejs %}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.1', {'packages':['corechart', 'sankey']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawCharts);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawCharts() {
+          drawBallotChart();
+          drawGradeChart();
+      }
+
+      function drawBallotChart() {
+          // Create the data table.
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Ballot type');
+          data.addColumn('number', 'Ballots');
+          data.addRows([
+            ['{{ 'Valid ballots'|trans   }}', {{ election.getValidBallots }}],
+            ['{{ 'Invalid ballots'|trans }}', {{ election.getInvalidBallots }}]
+          ]);
+
+          // Set chart options
+          var options = {
+              pieHole: 0.5,
+              height: 300,
+              backgroundColor: { fill:'transparent' }
+          };
+
+          // Instantiate and draw our chart, passing in some options.
+          var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+          chart.draw(data, options);
+      }
+
+      function drawGradeChart() {
+          // Create the data table.
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Voting Grade');
+          data.addColumn('string', 'Voted Grade');
+          data.addColumn('number', 'Vote count');
+
+          data.addRows([
+            {% for gradeFrom, votesFrom in election.voteGradeDistribution %}
+                {% for gradeTo, votesTo in votesFrom %}
+                    ['{{ grade(gradeFrom) }}', '->{{ grade(gradeTo) }}', {{ votesTo }}],
+                {% endfor %}
+            {% endfor %}
+          ]);
+
+          // Set chart options
+          var options = {
+              height: 300,
+              backgroundColor: { fill:'transparent' }
+          };
+
+          // Instantiate and draw our chart, passing in some options.
+          var chart = new google.visualization.Sankey(document.getElementById('sankey_div'));
+          chart.draw(data, options);
+      }
+    </script>
+{% endblock %}
+
+{% macro grade(id) %}
+    {%- if     id == 0 -%}A
+    {%- elseif id == 1 -%}B
+    {%- elseif id == 2 -%}C
+    {%- else -%}?{%- endif -%}
+{% endmacro %}

@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: services.yml }
 
 framework:
     #esi:             ~
@@ -30,21 +31,15 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
         ga_tracking:  "%ga_tracking%"
-        student_info: "@helit.myclass.student_info.manager"
+        student_info: "@app.student_info.manager"
 
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ "HelitMyClassBundle" ]
-    #java: /usr/bin/java
+    bundles:        [ "AppBundle" ]
     filters:
         cssrewrite: ~
-        #closure:
-        #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
-        #yui_css:
-        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
-        # Assetic Configuration
     assets:
         semantic_css:
           inputs:
@@ -69,7 +64,7 @@ assetic:
               - '%kernel.root_dir%/../vendor/semantic/ui/dist/themes/default/assets/fonts/icons.ttf'
         nav_background:
           inputs:
-              - '@HelitMyClassBundle/Resources/public/images/navbg.jpg'
+              - '%kernel.root_dir%/Resources/public/images/navbg.jpg'
 
 # Doctrine Configuration
 doctrine:
@@ -101,7 +96,7 @@ swiftmailer:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: Helit\Bundle\MyClassBundle\Entity\User
+    user_class: AppBundle\Entity\User
 
 # Sonata block configuration
 sonata_block:
@@ -111,7 +106,7 @@ sonata_block:
         sonata.admin.block.admin_list:
             contexts:   [admin]
 
-        helit.myclass.block.teacher_schedule:
+        app.block.teacher_schedule:
             contexts:   [admin]
 
 # Sonata admin configuration
@@ -123,4 +118,4 @@ sonata_admin:
                 type: sonata.admin.block.admin_list
             -
                 position: right
-                type: helit.myclass.block.teacher_schedule
+                type: app.block.teacher_schedule

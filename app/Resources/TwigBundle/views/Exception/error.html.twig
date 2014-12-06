@@ -1,4 +1,4 @@
-{% extends 'HelitMyClassBundle::layout.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block title %}An Error Occurred: {{ status_text }}{% endblock %}
 
@@ -12,7 +12,7 @@
             </div>
         </h1>
 
-        <a href="{{ path('helit_my_class_landing_index') }}" class="small fluid ui vertical animated button">
+        <a href="{{ path('my_class_landing_index') }}" class="small fluid ui vertical animated button">
             <div class="ahidden visible content">Go Home</div>
             <div class="avisible hidden content">
                 <i class="home icon"></i>

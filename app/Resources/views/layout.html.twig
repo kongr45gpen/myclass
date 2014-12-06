@@ -1,0 +1,110 @@
+{% extends '::base.html.twig' %}
+
+{% block title 'MyClass'|trans %}
+
+{% block stylesheets %}
+	{% stylesheets '@semantic_font_woff' output='css/themes/default/assets/fonts/icons.woff'%} {% endstylesheets %}
+	{% stylesheets '@semantic_font_ttf' output='css/themes/default/assets/fonts/icons.ttf'%} {% endstylesheets %}
+	{% stylesheets '@semantic_font_eot' output='css/themes/default/assets/fonts/icons.eot'%} {% endstylesheets %}
+	{% stylesheets '@semantic_font_svg' output='css/themes/default/assets/fonts/icons.svg'%} {% endstylesheets %}
+	{% stylesheets '@semantic_font_otf' output='css/themes/default/assets/fonts/icons.otf'%} {% endstylesheets %}
+	{% stylesheets '@nav_background'    output='css/images/nav_bg.jpg'%} {% endstylesheets %}
+
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700' rel='stylesheet' type='text/css'>
+	<link href='//cdnjs.cloudflare.com/ajax/libs/select2/3.5.0/select2.min.css' rel='stylesheet' type='text/css'>
+	{% stylesheets
+        '@semantic_css'
+        '%kernel.root_dir%/Resources/public/css/semantic.css'
+		'%kernel.root_dir%/Resources/public/css/style.css'
+     %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+
+{% endblock %}
+
+{% block body %}
+
+<div class="ui inverted masthead navbar segment">
+    {% block content_header %}
+        {{ render(controller("AppBundle:Helper:navbar")) }}
+    {% endblock %}
+</div>
+
+    <ul id="menu">
+    </ul>
+
+    <div style="clear: both"></div>
+
+	{% if app.session.flashbag.peekAll is not empty %}
+	    <div class="ui page grid relaxed feature segment">
+	    	<div class="ui column">
+	        	{% for flashMessage in app.session.flashbag.get('success') %}
+	        	    <div class="ui green message">
+	        	      <div class="header">
+	        		Success
+	        	      </div>
+	        	      <p>
+	        		{{ flashMessage }}
+	        	      </p>
+	        	  </div>
+	        	{% endfor %}
+	        	{% for flashMessage in app.session.flashbag.get('error') %}
+	        	    <div class="ui red message">
+	        	      <div class="header">
+	        		Error
+	        	      </div>
+	        	      <p>
+	        		{{ flashMessage }}
+	        	      </p>
+	        	  </div>
+	        	{% endfor %}
+	        	    {% for flashMessage in app.session.flashbag.get('notice') %}
+	        	    <div class="ui message">
+	        	      <div class="header">
+	        		Notice
+	        	      </div>
+	        	      <p>
+	        		{{ flashMessage }}
+	        	      </p>
+	        	  </div>
+	        	{% endfor %}
+	    	</div>
+		</div>
+	{% endif %}
+
+    <div class="{% block segment_class %}ui page grid feature segment{% endblock %}">
+    	<div class="ui column">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.0/select2.min.js"></script>
+    {% javascripts
+        '@semantic_js'
+        '%kernel.root_dir%/Resources/public/js/main.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+	{% block pagejs %}
+	{% endblock %}
+{% endblock %}
+
+{% block analytics %}
+{% if ga_tracking %}
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', '{{ ga_tracking }}', 'auto');
+		ga('send', 'pageview');
+	</script>
+{% endif %}
+{% endblock %}

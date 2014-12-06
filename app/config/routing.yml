@@ -10,8 +10,8 @@ _sonata_admin:
     type: sonata_admin
     prefix: /admin
 
-helit_my_class:
-    resource: "@HelitMyClassBundle/Controller/"
+my_class:
+    resource: "@AppBundle/Controller/"
     type:     annotation
     prefix:   /
 
@@ -19,5 +19,5 @@ index_php:
     path: /index.php
     defaults:
         _controller: FrameworkBundle:Redirect:redirect
-        route: helit_my_class_landing_index
+        route: my_class_landing_index
         permanent: true
