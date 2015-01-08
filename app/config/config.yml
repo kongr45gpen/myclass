@@ -37,31 +37,31 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ "AppBundle" ]
+    bundles:        [ ]
     filters:
         cssrewrite: ~
     assets:
         semantic_css:
           inputs:
-              - '%kernel.root_dir%/../vendor/semantic/ui/dist/semantic.min.css'
+              - '%kernel.root_dir%/Resources/SemanticUI/semantic.min.css'
         semantic_js:
           inputs:
-              - '%kernel.root_dir%/../vendor/semantic/ui/dist/semantic.min.js'
+              - '%kernel.root_dir%/Resources/SemanticUI/semantic.min.js'
         semantic_font_woff:
           inputs:
-              - '%kernel.root_dir%/../vendor/semantic/ui/dist/themes/default/assets/fonts/icons.woff'
+              - '%kernel.root_dir%/Resources/SemanticUI/themes/default/assets/fonts/icons.woff'
         semantic_font_eot:
           inputs:
-              - '%kernel.root_dir%/../vendor/semantic/ui/dist/themes/default/assets/fonts/icons.eot'
+              - '%kernel.root_dir%/Resources/SemanticUI/themes/default/assets/fonts/icons.eot'
         semantic_font_otf:
           inputs:
-              - '%kernel.root_dir%/../vendor/semantic/ui/dist/themes/default/assets/fonts/icons.otf'
+              - '%kernel.root_dir%/Resources/SemanticUI/themes/default/assets/fonts/icons.otf'
         semantic_font_svg:
           inputs:
-              - '%kernel.root_dir%/../vendor/semantic/ui/dist/themes/default/assets/fonts/icons.svg'
+              - '%kernel.root_dir%/Resources/SemanticUI/themes/default/assets/fonts/icons.svg'
         semantic_font_ttf:
           inputs:
-              - '%kernel.root_dir%/../vendor/semantic/ui/dist/themes/default/assets/fonts/icons.ttf'
+              - '%kernel.root_dir%/Resources/SemanticUI/themes/default/assets/fonts/icons.ttf'
         nav_background:
           inputs:
               - '%kernel.root_dir%/Resources/public/images/navbg.jpg'
