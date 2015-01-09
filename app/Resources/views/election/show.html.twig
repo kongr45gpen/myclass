@@ -5,7 +5,7 @@
     <h1 class="ui dividing header">{{ election.name }}</h1>
 
     <h2 class="ui header">{% trans %}Results{% endtrans %}</h2>
-    <table class="ui sortable table segment">
+    <table class="ui celled table segment">
         <thead>
             <tr>
                 <th class="one wide election-position">{% trans %}Pos.{% endtrans %}</th>
@@ -116,7 +116,7 @@
           data.addRows([
             {% for gradeFrom, votesFrom in election.voteGradeDistribution %}
                 {% for gradeTo, votesTo in votesFrom %}
-                    ['{{ grade(gradeFrom) }}', '->{{ grade(gradeTo) }}', {{ votesTo }}],
+                    ['{{ grade(gradeFrom)|trans }}', '->{{ grade(gradeTo)|trans }}', {{ votesTo }}],
                 {% endfor %}
             {% endfor %}
           ]);

@@ -250,13 +250,19 @@ class Election
 
         foreach ($this->candidates as $candidate) {
             foreach ($candidate->getVotes() as $voteGrade => $votes) {
-                if (isset($return[$candidate->getGrade()][$voteGrade])) {
-                    $return[$candidate->getGrade()][$voteGrade] += $votes;
+                if (isset($return[$voteGrade][$candidate->getGrade()])) {
+                    $return[$voteGrade][$candidate->getGrade()] += $votes;
                 } else {
-                    $return[$candidate->getGrade()][$voteGrade] = $votes;
+                    $return[$voteGrade][$candidate->getGrade()] = $votes;
                 }
             }
         }
+
+        foreach ($return as &$gradeReturn) {
+            ksort($gradeReturn);
+        }
+
+        ksort($return);
 
         return $return;
     }
