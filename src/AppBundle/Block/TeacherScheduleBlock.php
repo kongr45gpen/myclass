@@ -27,7 +27,7 @@ class TeacherScheduleBlock extends BaseBlockService
         $resolver->setDefaults(array(
             'url'      => false,
             'title'    => 'Edit Schedule',
-            'template' => 'AppBundle:Admin:teacher_list.html.twig',
+            'template' => 'admin/teacher_list.html.twig',
         ));
     }
 

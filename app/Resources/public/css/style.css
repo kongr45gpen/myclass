@@ -57,6 +57,10 @@ td.schedule {
     height: 28px !important;
 }
 
+.schedule-edit tr td:first-child {
+    font-weight: 700;
+}
+
 .schedule-edit .seven.field {
     text-align: right;
 }
@@ -80,7 +84,7 @@ td.schedule {
     border-radius: 5px;
 }
 
-button.schedule-edit-action {
+.schedule-edit-action {
     padding-top: 9px !important;
 }
 

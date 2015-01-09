@@ -42,7 +42,7 @@
     {%- endif -%}
     <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
         <i class="right arrow icon"></i>
-        {{ label|trans({}, translation_domain) }}
+        <span>{{ label|trans({}, translation_domain) -}}</span>
     </button>
 {%- endblock button_widget %}
 
@@ -57,17 +57,17 @@
                     {{ teacher.name }}
                 </h2>
 
-                <div class="ui two small right floated buttons">
+                <div class="ui small right floated buttons">
                     <a href="{{ path('admin') }}" class="labeled ui black icon schedule-edit-action button">
                         <i class="left arrow icon"></i>
                         Back
                     </a>
-                    {{ form_widget(form.submit, { attr: {class: 'right labeled ui blue icon schedule-edit-action button'}} )}}
+                    {{ form_widget(form.submit, { attr: {class: 'right labeled ui primary icon schedule-edit-action button'}} )}}
                 </div>
             </div>
 
 
-            <table class="ui celled small padded definition schedule-edit attached table segment">
+            <table class="ui celled small padded schedule-edit attached table segment">
                 <thead><tr>
                     <th>Hour</th>
                     {% for hour in 1..7 %}
