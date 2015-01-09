@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Separation
@@ -31,6 +32,7 @@ class Separation
     /**
      * @var string
      *
+     * @Serializer\SerializedName("fullname")
      * @ORM\Column(name="full_name", type="string", length=255)
      */
     private $fullName;
@@ -43,9 +45,26 @@ class Separation
     /**
      * @var string
      *
+     * @Serializer\SerializedName("color")
      * @ORM\Column(name="colour", type="string", length=15, nullable=true)
      */
     private $colour;
+
+    /**
+     * Kept for backwards compatibility
+     *
+     * @var int
+     */
+    static private $visible_on = 0;
+
+    /**
+     * Kept for backwards compatibility
+     *
+     * @Serializer\Type("array<int,int>")
+     *
+     * @var array
+     */
+    static private $default = [];
 
 
     /**

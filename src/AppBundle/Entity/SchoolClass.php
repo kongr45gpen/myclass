@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * SchoolClass
@@ -42,6 +43,8 @@ class SchoolClass
     private $orientation;
 
     /**
+     * @Serializer\Accessor(getter="getActiveSchedule")
+     * @Serializer\Type("array<AppBundle\Entity\ScheduleItem>")
      * @ORM\OneToMany(targetEntity="ScheduleItem", mappedBy="class")
      */
     private $schedule;
@@ -169,10 +172,25 @@ class SchoolClass
     /**
      * Convert to string
      *
+     * @Serializer\SerializedName("alias")
+     * @Serializer\VirtualProperty
+     *
      * @return string
      */
     public function __toString()
     {
         return $this->getName();
+    }
+
+    /**
+     * Get the items of the schedule that are not disabled
+     *
+     * @return array
+     */
+    public function getActiveSchedule()
+    {
+        return $this->schedule->filter(function($item) {
+            return ScheduleItem::STATUS_DISABLED !== $item->getStatus();
+        })->getValues();
     }
 }

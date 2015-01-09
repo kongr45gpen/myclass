@@ -22,7 +22,8 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "ivaynberg/select2": "~3.5",
         "sonata-project/admin-bundle": "~2.3",
-        "sonata-project/doctrine-orm-admin-bundle": "~2.3"
+        "sonata-project/doctrine-orm-admin-bundle": "~2.3",
+        "jms/serializer-bundle": "0.13.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

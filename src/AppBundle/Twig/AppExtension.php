@@ -16,7 +16,7 @@ class AppExtension extends \Twig_Extension
      *
      * @param string $string
      */
-    public function removeAccents($string)
+    public static function removeAccents($string)
     {
         return strtr($string, [
             'Ά' => 'α',

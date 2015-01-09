@@ -2,7 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Twig\AppExtension;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Teacher
@@ -31,11 +33,13 @@ class Teacher
     /**
      * @var integer
      *
+     * @Serializer\Exclude()
      * @ORM\Column(name="favorite_room", type="smallint")
      */
     private $favoriteRoom = 0;
 
     /**
+     * @Serializer\Exclude()
      * @ORM\OneToMany(targetEntity="ScheduleItem", mappedBy="teacher")
      */
     private $schedule;
@@ -135,5 +139,18 @@ class Teacher
     public function getFavoriteRoom()
     {
         return $this->favoriteRoom;
+    }
+
+    /**
+     * Get name in capital letters
+     *
+     * @Serializer\SerializedName("capital_name")
+     * @Serializer\VirtualProperty
+     *
+     * @return string
+     */
+    public function getCapitalName()
+    {
+        return mb_strtoupper(AppExtension::removeAccents($this->name), 'UTF-8');
     }
 }

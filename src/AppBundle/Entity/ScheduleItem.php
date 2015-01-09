@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * ScheduleItem
@@ -49,6 +50,8 @@ class ScheduleItem
     /**
      * @var integer
      *
+     * @Serializer\Exclude
+     *
      * @ORM\Column(name="status", type="smallint")
      */
     private $status = self::STATUS_ENABLED;
@@ -61,15 +64,31 @@ class ScheduleItem
     private $room = 0;
 
     /**
-    * @ORM\ManyToOne(targetEntity="SchoolClass", inversedBy="schedule")
-    * @ORM\JoinColumn(nullable=false)
-    */
+     * @ORM\ManyToOne(targetEntity="SchoolClass", inversedBy="schedule")
+     * @ORM\JoinColumn(nullable=false)
+     */
     private $class;
 
     /**
-    * @ORM\ManyToOne(targetEntity="Teacher", inversedBy="schedule")
-    */
+     * @Serializer\Accessor(getter="getTeacherId")
+     * @Serializer\Type("integer")
+     * @ORM\ManyToOne(targetEntity="Teacher", inversedBy="schedule")
+     */
     private $teacher;
+
+    /**
+    * Kept for API backwards compatibility
+    *
+    * @var int
+    */
+    static private $last_update = 1;
+
+    /**
+    * Kept for API backwards compatibility
+    *
+    * @var int
+    */
+    static private $lesson = 0;
 
 
     /**
@@ -218,5 +237,28 @@ class ScheduleItem
     public function getTeacher()
     {
         return $this->teacher;
+    }
+
+    /**
+     * Get whether the schedule item is unknown
+     *
+     * @Serializer\SerializedName("unknown")
+     * @Serializer\VirtualProperty
+     *
+     * @return boolean
+     */
+    public function isUnknown()
+    {
+        return self::STATUS_UNKNOWN === $this->status;
+    }
+
+    /**
+     * Get the ID of the teacher
+     *
+     * @return integer
+     */
+    public function getTeacherId()
+    {
+        return $this->teacher ? $this->teacher->getId() : 0;
     }
 }

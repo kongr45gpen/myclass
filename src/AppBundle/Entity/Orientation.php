@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Orientation
@@ -32,6 +33,7 @@ class Orientation
     /**
      * @var string
      *
+     * @Serializer\SerializedName("fullname")
      * @ORM\Column(name="full_name", type="string", length=255)
      */
     private $fullName;
@@ -39,6 +41,7 @@ class Orientation
     /**
      * @var string
      *
+     * @Serializer\SerializedName("color")
      * @ORM\Column(name="colour", type="string", length=15, nullable=true)
      */
     private $colour;
@@ -60,6 +63,13 @@ class Orientation
      * @ORM\OneToMany(targetEntity="SchoolClass", mappedBy="orientation")
      */
     private $classes;
+
+    /**
+    * Kept for backwards compatibility
+    *
+    * @var array
+    */
+    static private $lessons = [];
 
     /**
      * Constructor
@@ -235,5 +245,18 @@ class Orientation
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * Whether the orientation is the only one on its separation
+     *
+     * @Serializer\SerializedName("general")
+     * @Serializer\VirtualProperty
+     *
+     * @return boolean
+     */
+    public function isGeneral()
+    {
+        return $this->separation->getOrientations()->count() == 1;
     }
 }
