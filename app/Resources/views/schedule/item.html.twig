@@ -1,10 +1,10 @@
 {% set item = (schedule[day][hour] is defined) ? schedule[day][hour] : null %}
 {% if item is null or item.status is constant('STATUS_DISABLED', item) %}
-    <td class="center aligned schedule disabled">ΚΕΝΟ</td>
+    <td class="schedule disabled">ΚΕΝΟ</td>
 {% elseif item.status is constant('STATUS_UNKNOWN',item) %}
-    <td class="center aligned schedule negative">???</td>
+    <td class="schedule negative">???</td>
 {% else %}
-    <td class="center aligned schedule positive">
+    <td class="schedule positive">
         <div class="schedule-teacher">
             {{- item.teacher ? item.teacher.name|removeAccents|upper : '' -}}
         </div>

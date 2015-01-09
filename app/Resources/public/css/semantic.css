@@ -158,14 +158,6 @@ p a {
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
-  /*rtl:ignore*/
-  .menu .right.menu > .item {
-    display: none;
-  }
-  /*rtl:ignore*/
-  .menu .right.menu > .mobile.item {
-    display: block;
-  }
 
   h1.ui.header {
     font-size: 1.5em;

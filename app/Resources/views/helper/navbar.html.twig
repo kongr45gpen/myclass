@@ -47,6 +47,9 @@
                             </a>
                         {% endfor %}
                     {% endfor %}
+                    {% if not loop.last %}
+                        <div class="mobile-item line-break"></div>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>

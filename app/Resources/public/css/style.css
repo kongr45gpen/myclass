@@ -6,12 +6,8 @@
     float: right;
 }
 
-td.schedule {
-    text-align: center;
-}
-
 .schedule-teacher {
-    margin-bottom: 1em;
+    /*margin-bottom: 1em;*/
 }
 
 .schedule-info .float-fill {
@@ -42,14 +38,46 @@ td.schedule {
 }
 
 @media (max-width: 768px) {
-    .desktop-item {
+    .desktop-item, .ui.table.desktop-item {
         display: none !important;
+    }
+
+    .schedule-teacher {
+        display: inline-block;
+    }
+
+    .schedule-info {
+        display: inline-block;
+        margin-left: 1em;
+        vertical-align: middle;
+    }
+
+    .schedule.table tr {
+        counter-reset: hour;
+    }
+
+    .schedule.table td:not(:first-child):before {
+        counter-increment: hour;
+        content: counters(hour,".") ". ";
+        font-weight: bold;
+    }
+
+    .schedule.table .label {
+        font-size: 0.7142rem;
     }
 }
 
 @media (min-width: 769px) {
-    .mobile-item {
+    .mobile-item, .ui.table.mobile-item {
         display: none !important;
+    }
+
+    .schedule.table td.schedule {
+        text-align: center;
+    }
+
+    .schedule.table .schedule-info .label {
+        margin-top: 1em;
     }
 }
 

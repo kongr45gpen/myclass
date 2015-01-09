@@ -8,14 +8,14 @@
             {% for class in classes -%}
                 <strong>{{ class.name }}</strong> ({{ class.orientation.fullname }})
                 {%- if not loop.last -%}
-                    ,
+                    ,<div class="mobile-item line-break"></div>
                 {% endif -%}
             {%- endfor -%}
         </div>
     </h1>
 
 
-    <table class="desktop-item ui large padded celled table segment">
+    <table class="desktop-item ui large padded celled schedule table segment">
         <thead>
             <tr>
                 <th class="schedule-hour">{% trans %}Hour{% endtrans %}</th>
@@ -40,15 +40,7 @@
     </table>
 
     {# Reverse table for mobile #}
-    <table class="mobile-item ui large padded celled table segment">
-        <thead>
-            <tr>
-                <th>Day</th>
-                {% for hour in 1..7 %}
-                    <th>{{ hour }}</th>
-                {% endfor %}
-            </tr>
-        </thead>
+    <table class="mobile-item ui large padded celled schedule table segment">
         <tbody>
         {% for day in range(constant('\\AppBundle\\Entity\\ScheduleItem::DAY_MONDAY'), constant('\\AppBundle\\Entity\\ScheduleItem::DAY_FRIDAY')) %}
             <tr>
