@@ -13,6 +13,8 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Separation
 {
+    use Colourable;
+
     /**
      * @var integer
      *
@@ -41,14 +43,6 @@ class Separation
      * @ORM\OneToMany(targetEntity="Orientation", mappedBy="separation")
      */
     private $orientations;
-
-    /**
-     * @var string
-     *
-     * @Serializer\SerializedName("color")
-     * @ORM\Column(name="colour", type="string", length=15, nullable=true)
-     */
-    private $colour;
 
     /**
      * Kept for backwards compatibility
@@ -161,29 +155,6 @@ class Separation
     public function getOrientations()
     {
         return $this->orientations;
-    }
-
-    /**
-     * Set colour
-     *
-     * @param string $colour
-     * @return Separation
-     */
-    public function setColour($colour)
-    {
-        $this->colour = $colour;
-
-        return $this;
-    }
-
-    /**
-     * Get colour
-     *
-     * @return string
-     */
-    public function getColour()
-    {
-        return $this->colour;
     }
 
     /**

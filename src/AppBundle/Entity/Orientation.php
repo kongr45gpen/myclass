@@ -14,6 +14,8 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class Orientation
 {
+    use Colourable;
+
     /**
      * @var integer
      *
@@ -37,14 +39,6 @@ class Orientation
      * @ORM\Column(name="full_name", type="string", length=255)
      */
     private $fullName;
-
-    /**
-     * @var string
-     *
-     * @Serializer\SerializedName("color")
-     * @ORM\Column(name="colour", type="string", length=15, nullable=true)
-     */
-    private $colour;
 
     /**
      * @var string
@@ -189,29 +183,6 @@ class Orientation
     public function getClasses()
     {
         return $this->classes;
-    }
-
-    /**
-     * Set colour
-     *
-     * @param string $colour
-     * @return Orientation
-     */
-    public function setColour($colour)
-    {
-        $this->colour = $colour;
-
-        return $this;
-    }
-
-    /**
-     * Get colour
-     *
-     * @return string
-     */
-    public function getColour()
-    {
-        return $this->colour;
     }
 
     /**

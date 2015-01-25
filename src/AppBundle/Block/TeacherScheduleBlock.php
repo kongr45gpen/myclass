@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
-use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\BaseBlockService;
@@ -55,7 +54,7 @@ class TeacherScheduleBlock extends BaseBlockService
 
     /**
      * @param ErrorElement $errorElement
-     * @param BBlockInterface $block
+     * @param BlockInterface $block
      */
     public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
     {
