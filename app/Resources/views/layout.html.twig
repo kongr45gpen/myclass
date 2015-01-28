@@ -37,7 +37,7 @@
     <div style="clear: both"></div>
 
 	{% if app.session.flashbag.peekAll is not empty %}
-	    <div class="ui page grid relaxed feature segment">
+	    <div class="ui basic page grid segment">
 	    	<div class="ui column">
 	        	{% for flashMessage in app.session.flashbag.get('success') %}
 	        	    <div class="ui green message">

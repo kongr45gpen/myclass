@@ -20,10 +20,14 @@ class ScheduleDayType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         foreach ($this->schedule as $hour => $item) {
-            if ($item->getStatus() == ScheduleItem::STATUS_UNKNOWN) {
-                $class = 'negative';
+            if ($item->getStatus() === ScheduleItem::STATUS_UNKNOWN) {
+                $class = 'warning';
             } elseif ($item->getClass() !== null) {
-                $class = 'active';
+                if ($item->getStatus() === ScheduleItem::STATUS_ENABLED) {
+                    $class = 'active';
+                } else {
+                    $class = 'negative';
+                }
             } else {
                 $class = '';
             }

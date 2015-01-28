@@ -94,11 +94,6 @@ p a {
   display: none;
 }
 
-.ui.page.grid.segment {
-  padding-top: 3.5rem;
-  padding-bottom: 3.5rem;
-}
-
 .masthead.segment {
   background-image: url(images/nav_bg.jpg);
   background-size: cover;
