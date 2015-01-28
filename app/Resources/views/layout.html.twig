@@ -36,42 +36,31 @@
 
     <div style="clear: both"></div>
 
-	{% if app.session.flashbag.peekAll is not empty %}
-	    <div class="ui basic page grid segment">
-	    	<div class="ui column">
-	        	{% for flashMessage in app.session.flashbag.get('success') %}
-	        	    <div class="ui green message">
-	        	      <div class="header">
-	        		Success
-	        	      </div>
-	        	      <p>
-	        		{{ flashMessage }}
-	        	      </p>
-	        	  </div>
-	        	{% endfor %}
-	        	{% for flashMessage in app.session.flashbag.get('error') %}
-	        	    <div class="ui red message">
-	        	      <div class="header">
-	        		Error
-	        	      </div>
-	        	      <p>
-	        		{{ flashMessage }}
-	        	      </p>
-	        	  </div>
-	        	{% endfor %}
-	        	    {% for flashMessage in app.session.flashbag.get('notice') %}
-	        	    <div class="ui message">
-	        	      <div class="header">
-	        		Notice
-	        	      </div>
-	        	      <p>
-	        		{{ flashMessage }}
-	        	      </p>
-	        	  </div>
-	        	{% endfor %}
-	    	</div>
-		</div>
-	{% endif %}
+    {% if app.session.flashbag.peekAll is not empty %}
+        <div class="ui basic page grid segment">
+            <div class="ui column">
+                {% for type, options in {
+                    success: { colour: 'green' },
+                    error:   { colour: 'red'   },
+                    warning: { colour: 'warning', icon: 'attention' },
+                    notice:  { colour: 'info'}
+                } %}
+                    {% for flashMessage in app.session.flashbag.get(type) %}
+                        <div class="ui {{ options.colour }} {% if options.icon is defined %}icon{% endif %} message">
+                            {% if options.icon is defined %}
+                                <i class="{{ options.icon }} icon"></i>
+                            {% endif %}
+
+                            <div class="content">
+                                <div class="header">{{ type|humanize }}</div>
+                                <p>{{ flashMessage }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 
     <div class="{% block segment_class %}ui basic page grid feature segment{% endblock %}">
     	<div class="ui column">
