@@ -67,8 +67,29 @@ class AdminController extends Controller
 
             $em->flush();
             $request->getSession()->getFlashBag()->add('success',
-                'The schedule has been stored successfully.'
+                "The schedule for {$teacher->getName()} has been stored successfully."
             );
+
+            if ($form->get('submit_next')->isClicked()) {
+                $next = $em->getRepository('AppBundle:Teacher')
+                    ->createQueryBuilder('t')
+                    ->where('t.id > :id')
+                    ->addOrderBy('t.id')
+                    ->setParameter('id', $teacher)
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getResult();
+
+                if (isset($next[0])) {
+                    return $this->redirect($this->generateUrl('admin_schedule', [
+                        'teacher' => $next[0]->getId()
+                    ]));
+                } else {
+                    $request->getSession()->getFlashBag()->add('notice',
+                        'No more teachers left.'
+                    );
+                }
+            }
 
             // Regenerate the form
             $form = $this->createCreateForm($schedule);
@@ -95,6 +116,9 @@ class AdminController extends Controller
         ));
 
         $form->add('submit', 'submit');
+        $form->add('submit_next', 'submit', [
+            'label' => 'Submit & Next'
+        ]);
 
         return $form;
     }

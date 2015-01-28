@@ -41,7 +41,9 @@
         {% set label = name|humanize %}
     {%- endif -%}
     <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
-        <i class="right arrow icon"></i>
+        {% if icon is defined and icon is not empty %}
+            <i class="right arrow icon"></i>
+        {% endif %}
         <span>{{ label|trans({}, translation_domain) -}}</span>
     </button>
 {%- endblock button_widget %}
@@ -62,7 +64,8 @@
                         <i class="left arrow icon"></i>
                         Back
                     </a>
-                    {{ form_widget(form.submit, { attr: {class: 'right labeled ui primary icon schedule-edit-action button'}} )}}
+                    {{ form_widget(form.submit, { attr: {class: 'ui primary icon schedule-edit-action button'}} )}}
+                    {{ form_widget(form.submit_next, { icon: 'right arrow' , attr: {class: 'right labeled ui primary icon schedule-edit-action button'}} )}}
                 </div>
             </div>
 
