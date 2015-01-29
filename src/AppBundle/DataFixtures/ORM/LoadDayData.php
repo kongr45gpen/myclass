@@ -6,7 +6,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\Day;
 
-class LoadUserData implements FixtureInterface
+class LoadDayData implements FixtureInterface
 {
     /**
      * {@inheritDoc}
