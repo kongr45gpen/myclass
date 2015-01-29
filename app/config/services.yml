@@ -1,4 +1,9 @@
 services:
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
+
     app.twig.app_extension:
         class: AppBundle\Twig\AppExtension
         tags:

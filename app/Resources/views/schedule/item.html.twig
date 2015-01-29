@@ -1,7 +1,7 @@
 {% set item = (schedule[day][hour] is defined) ? schedule[day][hour] : null %}
 {% if item is null or item.status is constant('STATUS_DISABLED', item) %}
     <td class="schedule disabled">ΚΕΝΟ</td>
-{% elseif item.status is constant('STATUS_UNKNOWN',item) %}
+{% elseif item.status is constant('STATUS_UNKNOWN', item) %}
     <td class="schedule negative">???</td>
 {% else %}
     <td class="schedule positive">

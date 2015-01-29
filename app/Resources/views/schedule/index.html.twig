@@ -32,7 +32,11 @@
                 {% spaceless %}
                     <td class="schedule-hour">{{ hour }}</td>
                     {% for day in range(constant('\\AppBundle\\Entity\\ScheduleItem::DAY_MONDAY'), constant('\\AppBundle\\Entity\\ScheduleItem::DAY_FRIDAY')) %}
-                        {% include('schedule/item.html.twig') %}
+                        {% if days[day].status is not constant('STATUS_DISABLED', days[day]) %}
+                            {% include('schedule/item.html.twig') %}
+                        {% elseif hour == 1 %}
+                            <td class="schedule disabled" rowspan="7">&nbsp;</td>
+                        {% endif %}
                     {% endfor %}
                 {% endspaceless %}
         {% endfor %}
@@ -45,11 +49,14 @@
         {% for day in range(constant('\\AppBundle\\Entity\\ScheduleItem::DAY_MONDAY'), constant('\\AppBundle\\Entity\\ScheduleItem::DAY_FRIDAY')) %}
             <tr>
                 {% spaceless %}
-                    <td>{{ date('sunday + ' ~ day ~ ' days')|date("l") }}</td>
-                    {% for hour in 1..7 %}
-                        {{ include('schedule/item.html.twig') }}
-                    {% endfor %}
+                    <td>{{ date('sunday + ' ~ day ~ ' days')|localizeddate('full', 'full', null, null, 'EEEE') }}</td>
+                    {% if days[day].status is not constant('STATUS_DISABLED', days[day]) %}
+                        {% for hour in 1..7 %}
+                            {{ include('schedule/item.html.twig') }}
+                        {% endfor %}
+                    {% endif %}
                 {% endspaceless %}
+            </tr>
         {% endfor %}
         </tbody>
     </table>

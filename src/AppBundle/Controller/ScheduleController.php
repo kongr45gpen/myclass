@@ -26,11 +26,17 @@ class ScheduleController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $classes  = $this->get('app.student_info.manager')->getClasses();
+        $days = $em->getRepository('AppBundle:Day')->findAll();
+        $classes = $this->get('app.student_info.manager')->getClasses();
         $schedule = $em->getRepository('AppBundle:ScheduleItem')->getStudentSchedule($classes);
 
+        // Make sure that $days starts from key 1
+        array_unshift($days, null);
+        unset($days[0]);
+
         return $this->render('schedule/index.html.twig', [
-            'classes'  => $classes,
+            'classes' => $classes,
+            'days' => $days,
             'schedule' => $schedule,
         ]);
     }
