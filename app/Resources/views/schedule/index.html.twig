@@ -31,8 +31,8 @@
             <tr class="schedule-row">
                 {% spaceless %}
                     <td class="schedule-hour">{{ hour }}</td>
-                    {% for day in range(constant('\\AppBundle\\Entity\\ScheduleItem::DAY_MONDAY'), constant('\\AppBundle\\Entity\\ScheduleItem::DAY_FRIDAY')) %}
-                        {% if days[day].status is not constant('STATUS_DISABLED', days[day]) %}
+                    {% for dayKey, day in days %}
+                        {% if day.status is not constant('STATUS_DISABLED', day) or is_granted('ROLE_ADMIN') %}
                             {% include('schedule/item.html.twig') %}
                         {% elseif hour == 1 %}
                             <td class="schedule disabled" rowspan="7">&nbsp;</td>
@@ -46,11 +46,11 @@
     {# Reverse table for mobile #}
     <table class="mobile-item ui large padded celled schedule table segment">
         <tbody>
-        {% for day in range(constant('\\AppBundle\\Entity\\ScheduleItem::DAY_MONDAY'), constant('\\AppBundle\\Entity\\ScheduleItem::DAY_FRIDAY')) %}
+        {% for dayKey, day in days %}
             <tr>
                 {% spaceless %}
-                    <td>{{ date('sunday + ' ~ day ~ ' days')|localizeddate('full', 'full', null, null, 'EEEE') }}</td>
-                    {% if days[day].status is not constant('STATUS_DISABLED', days[day]) %}
+                    <td>{{ date('sunday + ' ~ dayKey ~ ' days')|localizeddate('full', 'full', null, null, 'EEEE') }}</td>
+                    {% if day.status is not constant('STATUS_DISABLED', day) or is_granted('ROLE_ADMIN') %}
                         {% for hour in 1..7 %}
                             {{ include('schedule/item.html.twig') }}
                         {% endfor %}
