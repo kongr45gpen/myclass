@@ -59,11 +59,9 @@ class Orientation
     private $classes;
 
     /**
-    * Kept for backwards compatibility
-    *
-    * @var array
-    */
-    static private $lessons = [];
+     * @ORM\OneToMany(targetEntity="Lesson", mappedBy="orientation")
+     */
+    private $lessons;
 
     /**
      * Constructor
@@ -71,6 +69,7 @@ class Orientation
     public function __construct()
     {
         $this->classes = new ArrayCollection();
+        $this->lessons = new ArrayCollection();
     }
 
     /**
@@ -229,5 +228,38 @@ class Orientation
     public function isGeneral()
     {
         return $this->separation->getOrientations()->count() == 1;
+    }
+
+    /**
+     * Add lessons
+     *
+     * @param \AppBundle\Entity\Lesson $lessons
+     * @return Orientation
+     */
+    public function addLesson(\AppBundle\Entity\Lesson $lessons)
+    {
+        $this->lessons[] = $lessons;
+
+        return $this;
+    }
+
+    /**
+     * Remove lessons
+     *
+     * @param \AppBundle\Entity\Lesson $lessons
+     */
+    public function removeLesson(\AppBundle\Entity\Lesson $lessons)
+    {
+        $this->lessons->removeElement($lessons);
+    }
+
+    /**
+     * Get lessons
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLessons()
+    {
+        return $this->lessons;
     }
 }

@@ -123,3 +123,14 @@
 .election-position {
     text-align: right;
 }
+
+.lesson-label {
+    font-weight: normal;
+    overflow: hidden;
+    text-align: right;
+    width: 15em !important;
+}
+
+.lesson-mark {
+    width: 5em !important;
+}

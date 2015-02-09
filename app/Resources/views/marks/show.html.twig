@@ -1,0 +1,39 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+    <h2 class="ui dividing header">
+        <i class="dashboard icon"></i>
+        <div class="content">
+            {% trans %}Mark calculation{% endtrans %}
+        </div>
+    </h2>
+
+    <form class="ui form">
+        {% set previous = null %}
+        {% for lesson in lessons %}
+            {% set current = lesson.group ? lesson.group.id : null %}
+            {% if current is not same as(previous) %}
+                <div class="ui hidden section divider"></div>
+                {% if lesson.group %}
+                    <h3 class="ui left floated dividing header">
+                        {{ lesson.group.name }}
+                    </h3>
+                {% endif %}
+            {% endif %}
+            {% set previous = current %}
+
+            <div class="inline field">
+                <label class="lesson-label">{{ lesson.name }}</label>
+                <input id="lm-{{ lesson.id }}" class="lesson-mark" {{- not lesson.graded ? ' disabled="disabled"' }} type="number" min="1" max="20" data-validate="lesson">
+            </div>
+        {% endfor %}
+    </form>
+{% endblock %}
+
+{% block pagejs %}
+    {% javascripts
+        '%kernel.root_dir%/Resources/public/js/marks.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

@@ -47,6 +47,18 @@ class StudentInfoManager
             ->findById($this->classes);
     }
 
+    public function getOrientations()
+    {
+        return $this->entityManager
+            ->getRepository('AppBundle:Orientation')
+            ->createQueryBuilder('o')
+            ->join('o.classes', 'c')
+            ->where('c in (:classes)')
+            ->setParameter('classes', $this->classes)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function isSelected(SchoolClass $class, Separation $separation=null)
     {
         if (!array_key_exists($separation->getId(), $this->classes)) {
