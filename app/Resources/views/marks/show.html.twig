@@ -15,10 +15,10 @@
             </h3>
             <div class="ui bottom attached segment">
                 <div class="ui vertical segment">
-                    <div class="fluid ui labeled primary icon button">
+                    <button class="fluid ui labeled primary icon button">
                         <i class="chevron right icon"></i>
                         {% trans %}Calculate{% endtrans %}
-                    </div>
+                    </button>
                 </div>
                 <div class="ui vertical segment mark-exact-score">
                     <div id="mark-large-score" class="mark-large-score">18</div>
@@ -35,7 +35,7 @@
             </div>
         </div>
 
-        <form class="ui mark-edit form">
+        <form action="#" class="ui mark-edit form" autocomplete="off">
             {% set previous = null %}
             {% for lesson in lessons %}
                 {% set current = lesson.group ? lesson.group.id : null %}

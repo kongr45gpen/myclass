@@ -1,5 +1,3 @@
-$.fn.form.settings.on = 'blur';
-
 rules = {};
 
 $('.ui.form .lesson-mark').each(function() {
@@ -55,35 +53,42 @@ function round(number) {
     return number.toFixed(1);
 }
 
-updateRationalScore(5, 11, 15);
-updateDecimalScore(5, 11);
-
 function calculateScore() {
     smallPrecision = 4;
 
     values = [];
-    $(".mark-edit").each(function() {
-        $(this).find(".lesson-mark").each(function() {
-            if ($(this).prop('disabled')) {
-                return;
-            }
+    allValid = true;
+    $(".lesson-mark").each(function() {
+        if ($(this).prop('disabled')) {
+            return;
+        }
 
-            if (supportsHtml5Storage()) {
-                localStorage.setItem("pointForm" + $(this).attr("id"), $(this).val());
-            }
+        value = parseInt($(this).val());
+        if (isNaN(value) || value < 0 || value > 20) {
+            allValid = false;
+            return;
+        }
 
-            values.push(parseFloat($(this).val()));
-        });
+        if (supportsHtml5Storage()) {
+            localStorage.setItem("pointForm" + $(this).attr("id"), $(this).val());
+        }
+
+        values.push(value);
     });
 
-    sum = (values.length === 0) ? 0 : getSum(values);
+    if (allValid) {
+        sum = getSum(values);
 
-    averageDecimal   = sum / values.length;
-    averageLarge     = Math.floor(averageDecimal);
-    averageNumerator = sum % values.length;
+        averageDecimal   = (values.length === 0) ? 0 : sum / values.length;
+        averageLarge     = Math.floor(averageDecimal);
+        averageNumerator = sum % values.length;
 
-    updateRationalScore(averageLarge, averageNumerator, values.length);
-    updateDecimalScore(round(averageDecimal), averageDecimal.toFixed(smallPrecision));
+        updateRationalScore(averageLarge, averageNumerator, values.length);
+        updateDecimalScore(round(averageDecimal), averageDecimal.toFixed(smallPrecision));
+    } else {
+        updateRationalScore("??", "?", "?");
+        updateDecimalScore("??", "???")
+    }
 }
 
 if (supportsHtml5Storage()) {
@@ -108,14 +113,3 @@ $("input").keyup(function() {
 });
 
 calculateScore();
-
-var onResize = function() {
-    $(".average-pointer").each(function() {
-        if ($(window).width() < 1200)
-            $(this).css('font-size', 'inherit');
-        else
-            $(this).css('font-size', $(this).height());
-    });
-}();
-
-$(window).resize(onResize);
