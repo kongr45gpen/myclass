@@ -137,9 +137,14 @@
 
 .mark-result  {
     min-width: 20em;
-    position: fixed;
-    right: 15%;
-    z-index: 2;
+}
+
+@media (min-width: 769px) and (min-height:780px) {
+    .mark-result {
+        position: fixed;
+        right: 15%;
+        z-index: 2;
+    }
 }
 
 .mark-exact-score {
