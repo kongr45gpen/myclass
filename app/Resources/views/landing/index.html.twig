@@ -2,22 +2,31 @@
 
 {% block content %}
     <h2 class="ui header">
-        <i class="calendar icon"></i>
+        <i class="student icon"></i>
         <div class="content">
-            {% trans %}Schedule{% endtrans %}
+            {% trans %}My Class Application{% endtrans %}
         </div>
     </h2>
     <div class="ui fitted divider"></div>
 
-    <div class="ui page grid overview relaxed segment">
-        <div class="ui two wide column"></div>
-        <div class="twelve wide column">
+    <div class="ui page grid overview relaxed divided segment">
+        <div class="eight wide column">
             <div class="ui center aligned stackable divided grid">
                 <div class="column">
                     <div class="ui icon header">
                         <i class="circular calendar icon"></i>
                     </div>
                     <p><a class="ui teal right labeled icon button" href="{{ path('schedule') }}">{% trans %}SCHEDULE{% endtrans %} <i class="right long arrow icon"></i></a></p>
+                </div>
+            </div>
+        </div>
+        <div class="eight wide column">
+            <div class="ui center aligned stackable divided grid">
+                <div class="column">
+                    <div class="ui icon header">
+                        <i class="circular list icon"></i>
+                    </div>
+                    <p><a class="ui orange right labeled icon button" href="{{ path('app_marks_show') }}">{% trans %}MARKS{% endtrans %} <i class="right long arrow icon"></i></a></p>
                 </div>
             </div>
         </div>
