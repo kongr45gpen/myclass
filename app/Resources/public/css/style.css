@@ -139,17 +139,39 @@
     min-width: 20em;
 }
 
-@media (min-width: 769px) and (min-height:780px) {
+@media (min-width: 769px) and (min-height: 780px) {
     .mark-result {
         position: fixed;
         right: 15%;
         z-index: 2;
     }
+
+    .mark-exact-score {
+        padding-left: 4em !important;
+        padding-right: 4em !important;
+    }
 }
 
-.mark-exact-score {
-    padding-left: 4em !important;
-    padding-right: 4em !important;
+@media (max-width: 768px), (max-height: 779px) {
+    .mark-score-box {
+        align-items: center;
+        display: flex;
+    }
+
+    .mark-exact-score, .mark-decimal-score {
+        box-shadow: none !important;
+        flex: 1 1 auto;
+        width: auto;
+    }
+
+    .mark-exact-score {
+        border-right: solid 1px #D4D4D5 !important;
+    }
+
+    .mark-segment {
+        margin-bottom: 1em !important;
+        padding-bottom: 0 !important;
+    }
 }
 
 .mark-large-score {
@@ -215,18 +237,6 @@
     -webkit-align-self: auto;
     -ms-flex-item-align: auto;
     align-self: auto;
-}
-
-/*
-    Legacy Firefox implementation treats all flex containers
-    as inline-block elements.
-*/
-@-moz-document url-prefix() {
-.mark-exact-score {
-    width: 100%;
-    -moz-box-sizing: border-box;
-    }
-
 }
 
 .copy-paste {

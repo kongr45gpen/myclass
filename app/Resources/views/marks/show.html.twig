@@ -13,24 +13,26 @@
             <h3 class="ui top attached center aligned header">
                 {% trans %}Average{% endtrans %}
             </h3>
-            <div class="ui bottom attached segment">
+            <div class="ui bottom attached segment mark-segment">
                 <div class="ui vertical segment">
                     <button class="fluid ui labeled primary icon button">
                         <i class="chevron right icon"></i>
                         {% trans %}Calculate{% endtrans %}
                     </button>
                 </div>
-                <div class="ui vertical segment mark-exact-score">
-                    <div id="mark-large-score" class="mark-large-score">..</div>
-                    <span class="copy-paste">&nbsp;</span>
-                    <div class="mark-quot-score">
-                        <div id="mark-enumerator" class="mark-enumerator">.</div>
-                        <span class="copy-paste">/</span>
-                        <div id="mark-denominator" class="mark-denominator">..</div>
+                <div class="mark-score-box">
+                    <div class="ui vertical segment mark-exact-score">
+                        <div id="mark-large-score" class="mark-large-score">..</div>
+                        <span class="copy-paste">&nbsp;</span>
+                        <div class="mark-quot-score">
+                            <div id="mark-enumerator" class="mark-enumerator">.</div>
+                            <span class="copy-paste">/</span>
+                            <div id="mark-denominator" class="mark-denominator">..</div>
+                        </div>
                     </div>
-                </div>
-                <div class="ui vertical segment mark-decimal-score">
-                    <span id="mark-decimal-score">....</span>
+                    <div class="ui vertical segment mark-decimal-score">
+                        <span id="mark-decimal-score">....</span>
+                    </div>
                 </div>
             </div>
         </div>
