@@ -41,7 +41,15 @@ function updateRationalScore(big, numerator, denominator) {
 }
 
 function updateDecimalScore(big, small) {
-    $("#mark-decimal-score").text(big);
+    $("#mark-decimal-score")
+        .text(big)
+        .popup('destroy')
+        .popup({
+            variation: 'small inverted',
+            position: 'right center',
+            content: small,
+        });
+
 }
 
 function round(number) {
