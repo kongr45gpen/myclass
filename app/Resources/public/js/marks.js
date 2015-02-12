@@ -111,6 +111,7 @@ if (supportsHtml5Storage()) {
 }
 
 $("button").click(function() {
+    $(".mark-edit").form('validate form');
     calculateScore();
 });
 $("form").change(function() {
