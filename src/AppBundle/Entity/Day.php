@@ -73,4 +73,18 @@ class Day
     {
         return $this->status;
     }
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return Day
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 }

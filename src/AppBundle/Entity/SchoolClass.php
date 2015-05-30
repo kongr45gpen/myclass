@@ -193,4 +193,14 @@ class SchoolClass
             return ScheduleItem::STATUS_DISABLED !== $item->getStatus();
         })->getValues();
     }
+
+    /**
+     * Get default
+     *
+     * @return boolean
+     */
+    public function getDefault()
+    {
+        return $this->default;
+    }
 }

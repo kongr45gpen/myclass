@@ -51,6 +51,11 @@ class Lesson
      */
     private $group;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Exam", mappedBy="lesson")
+     */
+    private $exams;
+
 
     /**
      * Get id
@@ -175,5 +180,56 @@ class Lesson
     public function getGroup()
     {
         return $this->group;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->exams = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get graded
+     *
+     * @return boolean
+     */
+    public function getGraded()
+    {
+        return $this->graded;
+    }
+
+    /**
+     * Add exam
+     *
+     * @param \AppBundle\Entity\Exam $exam
+     *
+     * @return Lesson
+     */
+    public function addExam(\AppBundle\Entity\Exam $exam)
+    {
+        $this->exams[] = $exam;
+
+        return $this;
+    }
+
+    /**
+     * Remove exam
+     *
+     * @param \AppBundle\Entity\Exam $exam
+     */
+    public function removeExam(\AppBundle\Entity\Exam $exam)
+    {
+        $this->exams->removeElement($exam);
+    }
+
+    /**
+     * Get exams
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getExams()
+    {
+        return $this->exams;
     }
 }

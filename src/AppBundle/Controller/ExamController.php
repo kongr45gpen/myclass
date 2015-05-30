@@ -7,27 +7,26 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
- * Marks controller.
+ * Exams controller.
  *
- * @Route("/marks")
- * @Route("/vathmoi")
+ * @Route("/exams")
  */
-class MarksController extends Controller
+class ExamController extends Controller
 {
     /**
      * @Route("/")
      */
-    public function showAction()
+    public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+	$em = $this->getDoctrine()->getManager();
 
         $orientations = $this->get('app.student_info.manager')->getOrientations();
 
-        $lessons = $em->getRepository('AppBundle:Lesson')
-            ->getGradedLessons($orientations);
+        $exams = $em->getRepository('AppBundle:Exam')
+            ->getExams($orientations);
 
-        return $this->render('marks/show.html.twig', [
-            'lessons' => $lessons,
+        return $this->render('exam/index.html.twig', [
+            'exams' => $exams,
         ]);
     }
 

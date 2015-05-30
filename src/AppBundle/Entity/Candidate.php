@@ -177,4 +177,18 @@ class Candidate
     {
         return array_keys($this->votes, max($this->votes));
     }
+
+    /**
+     * Set totalVotes
+     *
+     * @param integer $totalVotes
+     *
+     * @return Candidate
+     */
+    public function setTotalVotes($totalVotes)
+    {
+        $this->totalVotes = $totalVotes;
+
+        return $this;
+    }
 }
