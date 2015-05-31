@@ -29,6 +29,14 @@ class Exam
     private $date;
 
     /**
+     * Duration in hours
+     * @var integer
+     *
+     * @ORM\Column(name="duration", type="integer")
+     */
+    private $duration = 2;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Lesson", inversedBy="exams")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -91,5 +99,29 @@ class Exam
     public function getLesson()
     {
         return $this->lesson;
+    }
+
+    /**
+     * Set duration
+     *
+     * @param integer $duration
+     *
+     * @return Exam
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Get duration
+     *
+     * @return integer
+     */
+    public function getDuration()
+    {
+        return $this->duration;
     }
 }
