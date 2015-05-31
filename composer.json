@@ -24,7 +24,8 @@
         "sonata-project/admin-bundle": "~2.3",
         "sonata-project/doctrine-orm-admin-bundle": "~2.3",
         "jms/serializer-bundle": "0.13.*",
-        "doctrine/doctrine-fixtures-bundle": "~2.2"
+        "doctrine/doctrine-fixtures-bundle": "~2.2",
+        "nesbot/carbon": "^1.19"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

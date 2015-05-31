@@ -12,6 +12,9 @@
                             {{- link.name -}}
                         </a>
                     {% endfor %}
+                    <a href="{{ path('app_exam_index') }}" class="item">
+                        <i class="edit icon"></i> {% trans %}Exams{% endtrans %}
+                    </a>
                     <a href="{{ path('app_marks_show') }}" class="item">
                         <i class="dashboard icon"></i> {% trans %}Marks{% endtrans %}
                     </a>

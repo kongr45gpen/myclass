@@ -1,4 +1,5 @@
 {% extends "layout.html.twig" %}
+{% import _self as index %}
 
 {% block title %}{{ 'Exams' | trans }}{% endblock %}
 
@@ -19,10 +20,14 @@
 		<tr>
 		    <td>{{ loop.index }}</td>
 		    <td>{{ exam.date|localizeddate('full', 'full', null, null, 'cccc dd MMMM') }}</td>
-		    <td>{{ exam.date|localizeddate('full', 'full', null, null, 'hh:mm') }}</td>
+		    <td>{{ index.formatHour(exam.date) }} - {{ index.formatHour(exam.endDate) }}</td>
 		    <td>{{ exam.lesson.name }}</td>
 		</tr>
 	    {% endfor %}
 	</tbody>
     </table>
 {% endblock %}
+
+{% macro formatHour(date) -%}
+    {{- date|localizeddate('full', 'full', null, null, 'hh:mm') -}}
+{%- endmacro %}

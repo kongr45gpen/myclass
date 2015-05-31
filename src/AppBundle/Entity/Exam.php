@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -70,11 +71,21 @@ class Exam
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return Carbon
      */
     public function getDate()
     {
-        return $this->date;
+        return Carbon::instance($this->date);
+    }
+
+    /**
+     * Get ending date
+     *
+     * @return Carbon
+     */
+    public function getEndDate()
+    {
+	return $this->getDate()->copy()->addHours($this->duration);
     }
 
     /**
