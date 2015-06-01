@@ -1,0 +1,24 @@
+{% extends "layout.html.twig" %}
+{% import "exam/index.html.twig" as index %}
+
+{% block title %}{{ 'Exams' | trans }} - {{ exam.lesson.name }}{% endblock %}
+
+{% block content %}
+<h2 class="ui header">
+    {{ exam.lesson.name }}
+    <div class="sub header">
+        {{ exam.date|localizeddate('full', 'full', null, null, 'cccc d MMMM yyyy') }},
+        {{ index.formatHour(exam.date) }} - {{ index.formatHour(exam.endDate) }}
+    </div>
+</h2>
+
+{% for syllabus in exam.syllabi %}
+    <div class="ui raised segment">
+        <div class="ui large top attached label">{{ syllabus.name }}</div>
+        <div class="content">
+            {{ syllabus.content|raw }}
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}
