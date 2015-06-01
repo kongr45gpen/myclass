@@ -45,6 +45,14 @@ class Exam
 
 
     /**
+     * Construct new Exam
+     */
+    public function __construct()
+    {
+        $this->date = Carbon::now();
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -75,7 +83,7 @@ class Exam
      */
     public function getDate()
     {
-        return Carbon::instance($this->date);
+        return $this->date ? Carbon::instance($this->date) : null;
     }
 
     /**
@@ -85,7 +93,7 @@ class Exam
      */
     public function getEndDate()
     {
-	return $this->getDate()->copy()->addHours($this->duration);
+        return $this->getDate()->copy()->addHours($this->duration);
     }
 
     /**
