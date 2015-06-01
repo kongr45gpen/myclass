@@ -190,6 +190,14 @@ class Exam
      */
     public function __toString()
     {
+        if (!$this->lesson) {
+            return '';
+        }
+
+        if (!$this->date) {
+            return $this->lesson->getName();
+        }
+
         return $this->lesson->getName() . ' ' . $this->getDate()->toDateTimeString();
     }
 }
