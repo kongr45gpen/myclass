@@ -8,7 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class ExamAdmin extends Admin
+class SyllabusAdmin extends Admin
 {
     /**
      * @param DatagridMapper $datagridMapper
@@ -17,9 +17,10 @@ class ExamAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
-            ->add('lesson')
-            ->add('date')
-            ->add('duration')
+            ->add('exam')
+            ->add('name')
+            ->add('content')
+            ->add('position')
         ;
     }
 
@@ -30,9 +31,10 @@ class ExamAdmin extends Admin
     {
         $listMapper
             ->add('id')
-            ->add('lesson')
-            ->add('date')
-            ->add('duration')
+            ->add('exam')
+            ->add('name')
+            ->add('content')
+            ->add('position')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -49,14 +51,9 @@ class ExamAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('lesson')
-            ->add('date')
-            ->add('duration')
-            ->add('syllabi', 'sonata_type_collection', array(), array(
-                'edit' => 'inline',
-                'inline' => 'table',
-                'sortable'  => 'position'
-            ))
+            ->add('name')
+            ->add('content')
+            ->add('position')
         ;
     }
 
@@ -67,28 +64,10 @@ class ExamAdmin extends Admin
     {
         $showMapper
             ->add('id')
-            ->add('lesson')
-            ->add('date')
-            ->add('duration')
-            ->add('syllabi')
+            ->add('exam')
+            ->add('name')
+            ->add('content')
+            ->add('position')
         ;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function prePersist($exam)
-    {
-        $this->preUpdate($exam);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function preUpdate($exam)
-    {
-        foreach ($exam->getSyllabi() as $syllabus) {
-            $syllabus->setExam($exam);
-        }
     }
 }

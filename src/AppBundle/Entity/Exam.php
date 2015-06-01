@@ -43,6 +43,11 @@ class Exam
      */
     private $lesson;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Syllabus", mappedBy="exam", cascade={"persist", "remove"})
+     */
+    private $syllabi;
+
 
     /**
      * Construct new Exam
@@ -142,5 +147,49 @@ class Exam
     public function getDuration()
     {
         return $this->duration;
+    }
+
+    /**
+     * Add syllabus
+     *
+     * @param \AppBundle\Entity\Syllabus $syllabus
+     *
+     * @return Exam
+     */
+    public function addSyllabus(\AppBundle\Entity\Syllabus $syllabus)
+    {
+        $this->syllabi[] = $syllabus;
+
+        return $this;
+    }
+
+    /**
+     * Remove syllabus
+     *
+     * @param \AppBundle\Entity\Syllabus $syllabus
+     */
+    public function removeSyllabus(\AppBundle\Entity\Syllabus $syllabus)
+    {
+        $this->syllabi->removeElement($syllabus);
+    }
+
+    /**
+     * Get syllabi
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSyllabi()
+    {
+        return $this->syllabi;
+    }
+
+    /**
+     * Convert to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->lesson->getName() . ' ' . $this->getDate()->toDateTimeString();
     }
 }

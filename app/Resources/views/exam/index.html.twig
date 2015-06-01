@@ -32,7 +32,15 @@
                     {%- endif -%}
                 </td>
                 <td>{{ index.formatHour(exam.date) }} - {{ index.formatHour(exam.endDate) }}</td>
-                <td>{{ exam.lesson.name }}</td>
+                <td>
+                    {% if exam.syllabi is empty %}
+                        {{ exam.lesson.name }}
+                    {% else %}
+                        <a href="{{ path('app_exam_show', { id: exam.id }) }}">
+                            {{ exam.lesson.name }}
+                        </a>
+                    {% endif %}
+                </td>
             </tr>
         {% endfor %}
     </tbody>

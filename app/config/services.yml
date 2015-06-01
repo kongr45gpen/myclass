@@ -59,3 +59,9 @@ services:
         arguments: [~, AppBundle\Entity\Exam, SonataAdminBundle:CRUD]
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin, label: Exam}
+
+    app.admin.syllabus:
+        class: AppBundle\Admin\SyllabusAdmin
+        arguments: [~, AppBundle\Entity\Syllabus, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Syllabus}
