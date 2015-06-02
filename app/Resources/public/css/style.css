@@ -253,3 +253,7 @@
     font-weight: 500;
     text-align: center;
 }
+
+.examTime {
+    white-space: nowrap;
+}

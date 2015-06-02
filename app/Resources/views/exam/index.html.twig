@@ -11,7 +11,7 @@
         <tr>
             <th class="one wide">{% trans %}Pos.{% endtrans %}</th>
             <th>{% trans %}Day{% endtrans %}</th>
-            <th>{% trans %}Time of day{% endtrans %}</th>
+            <th class="examTime">{% trans %}Time of day{% endtrans %}</th>
             <th class="ten wide">{% trans %}Lesson{% endtrans %}</th>
         </tr>
     </thead>
@@ -31,7 +31,7 @@
                         {{ exam.date.year }}
                     {%- endif -%}
                 </td>
-                <td>{{ index.formatHour(exam.date) }} - {{ index.formatHour(exam.endDate) }}</td>
+                <td class="examTime">{{ index.formatHour(exam.date) }} - {{ index.formatHour(exam.endDate) }}</td>
                 <td>
                     {% if exam.syllabi is empty %}
                         {{ exam.lesson.name }}
