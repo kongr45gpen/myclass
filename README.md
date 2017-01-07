@@ -7,3 +7,7 @@ Features
  * School schedule
  * Student election results
  * Test syllabi
+
+Screenshot
+------------------------
+![Screenshot](/doc/screenshot.png?raw=true)
